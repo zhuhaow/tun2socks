@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode7.3
+
+script:
+  - xctool -project tun2socks.xcodeproj -scheme "tun2socks" -sdk macosx  -arch x86_64 build
