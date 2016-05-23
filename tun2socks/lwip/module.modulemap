@@ -1,0 +1,9 @@
+module lwip {
+    header "src/include/lwip/pbuf.h"
+    header "src/include/lwip/init.h"
+    header "src/include/lwip/netif.h"
+    header "src/include/lwip/tcp.h"
+    header "src/include/lwip/timers.h"
+    header "src/darwin/include/compat.h"
+    export *
+}
