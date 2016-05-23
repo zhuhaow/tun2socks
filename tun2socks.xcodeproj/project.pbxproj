@@ -861,7 +861,6 @@
 		3642CA071CEDCC60001E0AAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -876,7 +875,6 @@
 				PRODUCT_NAME = tun2socks;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/src/darwin/include $(SRCROOT)/tun2socks/lwip/src/include $(SRCROOT)/tun2socks/lwip/src/include/ipv4";
 			};
 			name = Debug;
@@ -884,7 +882,6 @@
 		3642CA081CEDCC60001E0AAF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
