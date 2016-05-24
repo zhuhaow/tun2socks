@@ -1,4 +1,4 @@
-module lwip [system] [extern_c] {
+module lwip [system][extern_c] {
     header "lwip/pbuf.h"
     header "lwip/init.h"
     header "lwip/netif.h"
