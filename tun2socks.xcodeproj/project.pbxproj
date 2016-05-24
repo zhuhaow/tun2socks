@@ -24,7 +24,6 @@
 		3642CADF1CEDCC71001E0AAF /* raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA371CEDCC71001E0AAF /* raw.c */; };
 		3642CAE01CEDCC71001E0AAF /* asn1_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA391CEDCC71001E0AAF /* asn1_dec.c */; };
 		3642CAE11CEDCC71001E0AAF /* asn1_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA3A1CEDCC71001E0AAF /* asn1_enc.c */; };
-		3642CAE21CEDCC71001E0AAF /* mib2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA3B1CEDCC71001E0AAF /* mib2.c */; };
 		3642CAE31CEDCC71001E0AAF /* mib_structs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA3C1CEDCC71001E0AAF /* mib_structs.c */; };
 		3642CAE41CEDCC71001E0AAF /* msg_in.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA3D1CEDCC71001E0AAF /* msg_in.c */; };
 		3642CAE51CEDCC71001E0AAF /* msg_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA3E1CEDCC71001E0AAF /* msg_out.c */; };
@@ -35,15 +34,28 @@
 		3642CAEA1CEDCC71001E0AAF /* tcp_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA431CEDCC71001E0AAF /* tcp_out.c */; };
 		3642CAEB1CEDCC71001E0AAF /* timers.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA441CEDCC71001E0AAF /* timers.c */; };
 		3642CAEC1CEDCC71001E0AAF /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA451CEDCC71001E0AAF /* udp.c */; };
-		3642CB551CEEAFA7001E0AAF /* api_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA181CEDCC71001E0AAF /* api_msg.c */; };
 		3642CB561CEEAFB6001E0AAF /* netdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA1B1CEDCC71001E0AAF /* netdb.c */; };
 		36BC58531CEF514200E0E367 /* IPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* IPStack.swift */; };
 		36BC58551CF14BF000E0E367 /* TunInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58541CF14BF000E0E367 /* TunInterfaceProtocol.swift */; };
 		36BC58981CF2A33800E0E367 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58961CF2A33800E0E367 /* compat.c */; };
 		36E44A001CF2EA9500185DBF /* tun2socks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA011CEDCC60001E0AAF /* tun2socks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36E44A6C1CF342B500185DBF /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36BC584D1CEF477A00E0E367 /* module.modulemap */; };
 		36E702781CEEDCCD002C2421 /* sys_arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 36E702771CEEDCCD002C2421 /* sys_arch.c */; };
 		36E7027A1CEEEB57002C2421 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E702791CEEEB57002C2421 /* Socket.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		36E44A6B1CF3429B00185DBF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = include/lwip;
+			dstSubfolderSpec = 16;
+			files = (
+				36E44A6C1CF342B500185DBF /* module.modulemap in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3642C9FE1CEDCC60001E0AAF /* tun2socks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = tun2socks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,10 +123,6 @@
 		3642CA4F1CEDCC71001E0AAF /* ip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip.h; sourceTree = "<group>"; };
 		3642CA501CEDCC71001E0AAF /* ip_addr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_addr.h; sourceTree = "<group>"; };
 		3642CA511CEDCC71001E0AAF /* ip_frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_frag.h; sourceTree = "<group>"; };
-		3642CA541CEDCC71001E0AAF /* icmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icmp.h; sourceTree = "<group>"; };
-		3642CA551CEDCC71001E0AAF /* inet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inet.h; sourceTree = "<group>"; };
-		3642CA561CEDCC71001E0AAF /* ip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip.h; sourceTree = "<group>"; };
-		3642CA571CEDCC71001E0AAF /* ip_addr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_addr.h; sourceTree = "<group>"; };
 		3642CA591CEDCC71001E0AAF /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
 		3642CA5A1CEDCC71001E0AAF /* api_msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_msg.h; sourceTree = "<group>"; };
 		3642CA5B1CEDCC71001E0AAF /* arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arch.h; sourceTree = "<group>"; };
@@ -147,11 +155,6 @@
 		3642CA761CEDCC71001E0AAF /* tcpip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcpip.h; sourceTree = "<group>"; };
 		3642CA771CEDCC71001E0AAF /* timers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timers.h; sourceTree = "<group>"; };
 		3642CA781CEDCC71001E0AAF /* udp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp.h; sourceTree = "<group>"; };
-		3642CA7A1CEDCC71001E0AAF /* etharp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = etharp.h; sourceTree = "<group>"; };
-		3642CA7B1CEDCC71001E0AAF /* ppp_oe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ppp_oe.h; sourceTree = "<group>"; };
-		3642CA7C1CEDCC71001E0AAF /* slipif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slipif.h; sourceTree = "<group>"; };
-		3642CA7E1CEDCC71001E0AAF /* netdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netdb.h; sourceTree = "<group>"; };
-		3642CA801CEDCC71001E0AAF /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		3642CA821CEDCC71001E0AAF /* etharp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etharp.c; sourceTree = "<group>"; };
 		3642CA831CEDCC71001E0AAF /* ethernetif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ethernetif.c; sourceTree = "<group>"; };
 		3642CA841CEDCC71001E0AAF /* FILES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FILES; sourceTree = "<group>"; };
@@ -209,6 +212,9 @@
 		36BC588A1CF188D200E0E367 /* fn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fn.h; sourceTree = "<group>"; };
 		36BC58961CF2A33800E0E367 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		36BC58971CF2A33800E0E367 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
+		36E44A9C1CF3EB6B00185DBF /* etharp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = etharp.h; sourceTree = "<group>"; };
+		36E44A9D1CF3EB6B00185DBF /* ppp_oe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ppp_oe.h; sourceTree = "<group>"; };
+		36E44A9E1CF3EB6B00185DBF /* slipif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = slipif.h; sourceTree = "<group>"; };
 		36E702771CEEDCCD002C2421 /* sys_arch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sys_arch.c; sourceTree = "<group>"; };
 		36E702791CEEEB57002C2421 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,7 +268,6 @@
 				3642CA131CEDCC71001E0AAF /* FILES */,
 				3642CA141CEDCC71001E0AAF /* README */,
 				3642CAB71CEDCC71001E0AAF /* UPGRADING */,
-				36BC584D1CEF477A00E0E367 /* module.modulemap */,
 			);
 			path = lwip;
 			sourceTree = "<group>";
@@ -377,55 +382,15 @@
 		3642CA471CEDCC71001E0AAF /* include */ = {
 			isa = PBXGroup;
 			children = (
-				3642CA481CEDCC71001E0AAF /* ipv4 */,
-				3642CA521CEDCC71001E0AAF /* ipv6 */,
+				3642CB521CEEAEEE001E0AAF /* arch */,
 				3642CA581CEDCC71001E0AAF /* lwip */,
-				3642CA791CEDCC71001E0AAF /* netif */,
-				3642CA7D1CEDCC71001E0AAF /* posix */,
+				36E44A9B1CF3EB6B00185DBF /* netif */,
+				36BC58971CF2A33800E0E367 /* compat.h */,
+				36BC588A1CF188D200E0E367 /* fn.h */,
+				3642CB4E1CEDCD6E001E0AAF /* lwipopts.h */,
+				36BC584D1CEF477A00E0E367 /* module.modulemap */,
 			);
 			path = include;
-			sourceTree = "<group>";
-		};
-		3642CA481CEDCC71001E0AAF /* ipv4 */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA491CEDCC71001E0AAF /* lwip */,
-			);
-			path = ipv4;
-			sourceTree = "<group>";
-		};
-		3642CA491CEDCC71001E0AAF /* lwip */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA4A1CEDCC71001E0AAF /* autoip.h */,
-				3642CA4B1CEDCC71001E0AAF /* icmp.h */,
-				3642CA4C1CEDCC71001E0AAF /* igmp.h */,
-				3642CA4D1CEDCC71001E0AAF /* inet.h */,
-				3642CA4E1CEDCC71001E0AAF /* inet_chksum.h */,
-				3642CA4F1CEDCC71001E0AAF /* ip.h */,
-				3642CA501CEDCC71001E0AAF /* ip_addr.h */,
-				3642CA511CEDCC71001E0AAF /* ip_frag.h */,
-			);
-			path = lwip;
-			sourceTree = "<group>";
-		};
-		3642CA521CEDCC71001E0AAF /* ipv6 */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA531CEDCC71001E0AAF /* lwip */,
-			);
-			path = ipv6;
-			sourceTree = "<group>";
-		};
-		3642CA531CEDCC71001E0AAF /* lwip */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA541CEDCC71001E0AAF /* icmp.h */,
-				3642CA551CEDCC71001E0AAF /* inet.h */,
-				3642CA561CEDCC71001E0AAF /* ip.h */,
-				3642CA571CEDCC71001E0AAF /* ip_addr.h */,
-			);
-			path = lwip;
 			sourceTree = "<group>";
 		};
 		3642CA581CEDCC71001E0AAF /* lwip */ = {
@@ -434,12 +399,20 @@
 				3642CA591CEDCC71001E0AAF /* api.h */,
 				3642CA5A1CEDCC71001E0AAF /* api_msg.h */,
 				3642CA5B1CEDCC71001E0AAF /* arch.h */,
+				3642CA4A1CEDCC71001E0AAF /* autoip.h */,
 				3642CA5C1CEDCC71001E0AAF /* debug.h */,
 				3642CA5D1CEDCC71001E0AAF /* def.h */,
 				3642CA5E1CEDCC71001E0AAF /* dhcp.h */,
 				3642CA5F1CEDCC71001E0AAF /* dns.h */,
 				3642CA601CEDCC71001E0AAF /* err.h */,
+				3642CA4B1CEDCC71001E0AAF /* icmp.h */,
+				3642CA4C1CEDCC71001E0AAF /* igmp.h */,
+				3642CA4D1CEDCC71001E0AAF /* inet.h */,
+				3642CA4E1CEDCC71001E0AAF /* inet_chksum.h */,
 				3642CA611CEDCC71001E0AAF /* init.h */,
+				3642CA4F1CEDCC71001E0AAF /* ip.h */,
+				3642CA501CEDCC71001E0AAF /* ip_addr.h */,
+				3642CA511CEDCC71001E0AAF /* ip_frag.h */,
 				3642CA621CEDCC71001E0AAF /* mem.h */,
 				3642CA631CEDCC71001E0AAF /* memp.h */,
 				3642CA641CEDCC71001E0AAF /* memp_std.h */,
@@ -465,33 +438,6 @@
 				3642CA781CEDCC71001E0AAF /* udp.h */,
 			);
 			path = lwip;
-			sourceTree = "<group>";
-		};
-		3642CA791CEDCC71001E0AAF /* netif */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA7A1CEDCC71001E0AAF /* etharp.h */,
-				3642CA7B1CEDCC71001E0AAF /* ppp_oe.h */,
-				3642CA7C1CEDCC71001E0AAF /* slipif.h */,
-			);
-			path = netif;
-			sourceTree = "<group>";
-		};
-		3642CA7D1CEDCC71001E0AAF /* posix */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA7F1CEDCC71001E0AAF /* sys */,
-				3642CA7E1CEDCC71001E0AAF /* netdb.h */,
-			);
-			path = posix;
-			sourceTree = "<group>";
-		};
-		3642CA7F1CEDCC71001E0AAF /* sys */ = {
-			isa = PBXGroup;
-			children = (
-				3642CA801CEDCC71001E0AAF /* socket.h */,
-			);
-			path = sys;
 			sourceTree = "<group>";
 		};
 		3642CA811CEDCC71001E0AAF /* netif */ = {
@@ -605,21 +551,9 @@
 		3642CB501CEEAEDD001E0AAF /* darwin */ = {
 			isa = PBXGroup;
 			children = (
-				3642CB511CEEAEE6001E0AAF /* include */,
 				3642CB571CEEB655001E0AAF /* src */,
 			);
 			path = darwin;
-			sourceTree = "<group>";
-		};
-		3642CB511CEEAEE6001E0AAF /* include */ = {
-			isa = PBXGroup;
-			children = (
-				3642CB521CEEAEEE001E0AAF /* arch */,
-				36BC58971CF2A33800E0E367 /* compat.h */,
-				36BC588A1CF188D200E0E367 /* fn.h */,
-				3642CB4E1CEDCD6E001E0AAF /* lwipopts.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		3642CB521CEEAEEE001E0AAF /* arch */ = {
@@ -651,6 +585,16 @@
 			path = wrapper;
 			sourceTree = "<group>";
 		};
+		36E44A9B1CF3EB6B00185DBF /* netif */ = {
+			isa = PBXGroup;
+			children = (
+				36E44A9C1CF3EB6B00185DBF /* etharp.h */,
+				36E44A9D1CF3EB6B00185DBF /* ppp_oe.h */,
+				36E44A9E1CF3EB6B00185DBF /* slipif.h */,
+			);
+			path = netif;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -673,6 +617,7 @@
 				3642C9FA1CEDCC60001E0AAF /* Frameworks */,
 				3642C9FB1CEDCC60001E0AAF /* Headers */,
 				3642C9FC1CEDCC60001E0AAF /* Resources */,
+				36E44A6B1CF3429B00185DBF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -732,7 +677,6 @@
 				36BC58981CF2A33800E0E367 /* compat.c in Sources */,
 				3642CAEA1CEDCC71001E0AAF /* tcp_out.c in Sources */,
 				3642CADC1CEDCC71001E0AAF /* memp.c in Sources */,
-				3642CAE21CEDCC71001E0AAF /* mib2.c in Sources */,
 				3642CAD31CEDCC71001E0AAF /* ip.c in Sources */,
 				3642CAE91CEDCC71001E0AAF /* tcp_in.c in Sources */,
 				3642CAE61CEDCC71001E0AAF /* stats.c in Sources */,
@@ -759,7 +703,6 @@
 				3642CADF1CEDCC71001E0AAF /* raw.c in Sources */,
 				3642CAE81CEDCC71001E0AAF /* tcp.c in Sources */,
 				3642CAE51CEDCC71001E0AAF /* msg_out.c in Sources */,
-				3642CB551CEEAFA7001E0AAF /* api_msg.c in Sources */,
 				3642CB561CEEAFB6001E0AAF /* netdb.c in Sources */,
 				3642CAE01CEDCC71001E0AAF /* asn1_dec.c in Sources */,
 				3642CAE71CEDCC71001E0AAF /* sys.c in Sources */,
@@ -874,8 +817,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.tun2socks;
 				PRODUCT_NAME = tun2socks;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/src/darwin/include $(SRCROOT)/tun2socks/lwip/src/include $(SRCROOT)/tun2socks/lwip/src/include/ipv4";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/src/include";
 			};
 			name = Debug;
 		};
@@ -895,8 +838,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.tun2socks;
 				PRODUCT_NAME = tun2socks;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/src/darwin/include $(SRCROOT)/tun2socks/lwip/src/include $(SRCROOT)/tun2socks/lwip/src/include/ipv4";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/src/include";
 			};
 			name = Release;
 		};

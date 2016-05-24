@@ -1,0 +1,10 @@
+module lwip [system] [extern_c] {
+    header "lwip/pbuf.h"
+    header "lwip/init.h"
+    header "lwip/netif.h"
+    header "lwip/tcp.h"
+    header "lwip/timers.h"
+    header "lwip/ip.h"
+    header "compat.h"
+    export *
+}
