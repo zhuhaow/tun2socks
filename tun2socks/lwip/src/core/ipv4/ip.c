@@ -826,12 +826,14 @@ ip_output(struct pbuf *p, ip_addr_t *src, ip_addr_t *dest,
      gets altered as the packet is passed down the stack */
   LWIP_ASSERT("p->ref == 1", p->ref == 1);
 
-  if ((netif = ip_route(dest)) == NULL) {
-    LWIP_DEBUGF(IP_DEBUG, ("ip_output: No route to %"U16_F".%"U16_F".%"U16_F".%"U16_F"\n",
-      ip4_addr1_16(dest), ip4_addr2_16(dest), ip4_addr3_16(dest), ip4_addr4_16(dest)));
-    IP_STATS_INC(ip.rterr);
-    return ERR_RTE;
-  }
+    /* tun2socks: do not use route table, instead, we use the first netif */
+//  if ((netif = ip_route(dest)) == NULL) {
+//    LWIP_DEBUGF(IP_DEBUG, ("ip_output: No route to %"U16_F".%"U16_F".%"U16_F".%"U16_F"\n",
+//      ip4_addr1_16(dest), ip4_addr2_16(dest), ip4_addr3_16(dest), ip4_addr4_16(dest)));
+//    IP_STATS_INC(ip.rterr);
+//    return ERR_RTE;
+//  }
+    netif = netif_list;
 
   return ip_output_if(p, src, dest, ttl, tos, proto, netif);
 }
