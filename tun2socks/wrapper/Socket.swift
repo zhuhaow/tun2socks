@@ -42,10 +42,10 @@ struct SocketIdentity {
 
 public class TSTCPSocket {
     private var pcb: UnsafeMutablePointer<tcp_pcb>
-    let sourceAddress: in_addr
-    let destinationAddress: in_addr
-    let sourcePort: UInt16
-    let destinationPort: UInt16
+    public let sourceAddress: in_addr
+    public let destinationAddress: in_addr
+    public let sourcePort: UInt16
+    public let destinationPort: UInt16
     let queue: dispatch_queue_t
     private var identity: SocketIdentity
 
@@ -81,6 +81,7 @@ public class TSTCPSocket {
     }
 
     func errored(error: err_t) {
+        release()
         switch Int32(error) {
         case ERR_RST:
             delegate?.socketDidReset(self)
@@ -89,7 +90,6 @@ public class TSTCPSocket {
         default:
             break
         }
-        release()
     }
 
     func sent(length: Int) {
@@ -100,8 +100,9 @@ public class TSTCPSocket {
         if buf == nil {
             delegate?.localDidClose(self)
         } else {
-            let data = NSMutableData(capacity: Int(buf.memory.tot_len))!
+            let data = NSMutableData(length: Int(buf.memory.tot_len))!
             pbuf_copy_partial(buf, data.mutableBytes, buf.memory.tot_len, 0)
+            tcp_recved(pcb, UInt16(data.length))
             delegate?.didReadData(data, from: self)
         }
     }
@@ -115,7 +116,7 @@ public class TSTCPSocket {
                 return
             }
 
-            if tcp_write(self.pcb, data.bytes, UInt16(data.length), 0) != err_t(ERR_OK) {
+            if tcp_write(self.pcb, data.bytes, UInt16(data.length), UInt8(TCP_WRITE_FLAG_COPY)) != err_t(ERR_OK) {
                 result = false
             } else {
                 result = true

@@ -1,7 +1,7 @@
 import Foundation
 import lwip
 
-protocol IPStackDelegate: class {
+public protocol IPStackDelegate: class {
     func didAcceptTCPSocket(sock: TSTCPSocket)
 }
 
@@ -21,7 +21,7 @@ public class TUNIPStack {
     let listenPCB: UnsafeMutablePointer<tcp_pcb>
     public var tunInterface: TunInterfaceProtocol!
 
-    weak var delegate: IPStackDelegate?
+    public weak var delegate: IPStackDelegate?
     var interface: UnsafeMutablePointer<netif> {
         return netif_list
     }
@@ -88,7 +88,7 @@ public class TUNIPStack {
     }
 
     func writePBuf(buf: UnsafeMutablePointer<pbuf>) {
-        let data = NSMutableData(capacity: Int(buf.memory.tot_len))!
+        let data = NSMutableData(length: Int(buf.memory.tot_len))!
         pbuf_copy_partial(buf, data.mutableBytes, buf.memory.tot_len, 0)
         tunInterface.writePackets([data])
     }
