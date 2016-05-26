@@ -102,7 +102,6 @@ public class TSTCPSocket {
         } else {
             let data = NSMutableData(length: Int(buf.memory.tot_len))!
             pbuf_copy_partial(buf, data.mutableBytes, buf.memory.tot_len, 0)
-            tcp_recved(pcb, UInt16(data.length))
             delegate?.didReadData(data, from: self)
         }
     }
