@@ -217,6 +217,7 @@
 		36BC588A1CF188D200E0E367 /* fn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fn.h; sourceTree = "<group>"; };
 		36BC58961CF2A33800E0E367 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		36BC58971CF2A33800E0E367 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
+		36C48C9C1CF8667F0071804F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36E44A9C1CF3EB6B00185DBF /* etharp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = etharp.h; sourceTree = "<group>"; };
 		36E44A9D1CF3EB6B00185DBF /* ppp_oe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ppp_oe.h; sourceTree = "<group>"; };
 		36E44A9E1CF3EB6B00185DBF /* slipif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = slipif.h; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 		3642C9F41CEDCC60001E0AAF = {
 			isa = PBXGroup;
 			children = (
+				36C48C9C1CF8667F0071804F /* README.md */,
 				3642C9FF1CEDCC60001E0AAF /* Products */,
 				3642CA001CEDCC60001E0AAF /* tun2socks */,
 			);
