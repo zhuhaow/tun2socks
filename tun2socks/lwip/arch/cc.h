@@ -33,9 +33,7 @@
 #define LWIP_ARCH_CC_H
 
 /* Include some files for defining library routines */
-#include <string.h>
 #include <sys/time.h>
-#include <limits.h>
 
 #define LWIP_TIMEVAL_PRIVATE 0
 
