@@ -1,6 +1,5 @@
 tun2socks
 =========
-
 ![](https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master)
 
 tun2socks is designed to work with the NetworkExtesion framework available since
@@ -9,7 +8,6 @@ modification.
 
 Usage
 -----
-
 Just read the comments in the Swift wrapper in `tun2socks/wrapper`.
 
 You may be more interested in using [NEKit](https://github.com/zhuhaow/NEKit)
@@ -21,7 +19,6 @@ All other protocols (ICMP, IGMP, ...) will not be supported.
 
 IPv6 support
 ------------
-
 As of now, IPv6 is not supported since lwip 1.4 does not support dual stack.
 IPv6 will be supported in the next major version of lwip.
 
