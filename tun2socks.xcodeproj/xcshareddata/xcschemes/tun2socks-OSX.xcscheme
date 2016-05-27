@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-               BuildableName = "tun2socksios.framework"
-               BlueprintName = "tun2socksios"
+               BlueprintIdentifier = "3642C9FD1CEDCC60001E0AAF"
+               BuildableName = "tun2socks.framework"
+               BlueprintName = "Mac Framework"
                ReferencedContainer = "container:tun2socks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-            BuildableName = "tun2socksios.framework"
-            BlueprintName = "tun2socksios"
+            BlueprintIdentifier = "3642C9FD1CEDCC60001E0AAF"
+            BuildableName = "tun2socks.framework"
+            BlueprintName = "Mac Framework"
             ReferencedContainer = "container:tun2socks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-            BuildableName = "tun2socksios.framework"
-            BlueprintName = "tun2socksios"
+            BlueprintIdentifier = "3642C9FD1CEDCC60001E0AAF"
+            BuildableName = "tun2socks.framework"
+            BlueprintName = "Mac Framework"
             ReferencedContainer = "container:tun2socks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

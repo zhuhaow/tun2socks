@@ -285,7 +285,7 @@
 		36BC58961CF2A33800E0E367 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		36BC58971CF2A33800E0E367 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
 		36C48C9C1CF8667F0071804F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		36C48CA21CF8701A0071804F /* tun2socksios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = tun2socksios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C48CA21CF8701A0071804F /* tun2socks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = tun2socks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C48CA41CF8701A0071804F /* tun2socks-ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tun2socks-ios.h"; sourceTree = "<group>"; };
 		36C48CA61CF8701A0071804F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E44A9C1CF3EB6B00185DBF /* etharp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = etharp.h; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				3642C9FE1CEDCC60001E0AAF /* tun2socks.framework */,
-				36C48CA21CF8701A0071804F /* tun2socksios.framework */,
+				36C48CA21CF8701A0071804F /* tun2socks.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -716,9 +716,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3642C9FD1CEDCC60001E0AAF /* tun2socks */ = {
+		3642C9FD1CEDCC60001E0AAF /* Mac Framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3642CA061CEDCC60001E0AAF /* Build configuration list for PBXNativeTarget "tun2socks" */;
+			buildConfigurationList = 3642CA061CEDCC60001E0AAF /* Build configuration list for PBXNativeTarget "Mac Framework" */;
 			buildPhases = (
 				3642C9F91CEDCC60001E0AAF /* Sources */,
 				3642C9FA1CEDCC60001E0AAF /* Frameworks */,
@@ -729,14 +729,14 @@
 			);
 			dependencies = (
 			);
-			name = tun2socks;
+			name = "Mac Framework";
 			productName = tun2socks;
 			productReference = 3642C9FE1CEDCC60001E0AAF /* tun2socks.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		36C48CA11CF8701A0071804F /* tun2socksios */ = {
+		36C48CA11CF8701A0071804F /* iOS Framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36C48CA71CF8701A0071804F /* Build configuration list for PBXNativeTarget "tun2socksios" */;
+			buildConfigurationList = 36C48CA71CF8701A0071804F /* Build configuration list for PBXNativeTarget "iOS Framework" */;
 			buildPhases = (
 				36C48C9D1CF8701A0071804F /* Sources */,
 				36C48C9E1CF8701A0071804F /* Frameworks */,
@@ -747,9 +747,9 @@
 			);
 			dependencies = (
 			);
-			name = tun2socksios;
+			name = "iOS Framework";
 			productName = "tun2socks-ios";
-			productReference = 36C48CA21CF8701A0071804F /* tun2socksios.framework */;
+			productReference = 36C48CA21CF8701A0071804F /* tun2socks.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -781,8 +781,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3642C9FD1CEDCC60001E0AAF /* tun2socks */,
-				36C48CA11CF8701A0071804F /* tun2socksios */,
+				3642C9FD1CEDCC60001E0AAF /* Mac Framework */,
+				36C48CA11CF8701A0071804F /* iOS Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -974,7 +974,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.tun2socks;
-				PRODUCT_NAME = tun2socks;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/";
@@ -995,7 +995,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.tun2socks;
-				PRODUCT_NAME = tun2socks;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/tun2socks/lwip/";
@@ -1014,8 +1014,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.zhuhaow.ios.tun2socks-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.tun2socks;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip/";
@@ -1036,8 +1036,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.zhuhaow.ios.tun2socks-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.tun2socks;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/tun2socks/lwip/";
@@ -1059,7 +1059,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3642CA061CEDCC60001E0AAF /* Build configuration list for PBXNativeTarget "tun2socks" */ = {
+		3642CA061CEDCC60001E0AAF /* Build configuration list for PBXNativeTarget "Mac Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3642CA071CEDCC60001E0AAF /* Debug */,
@@ -1068,7 +1068,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36C48CA71CF8701A0071804F /* Build configuration list for PBXNativeTarget "tun2socksios" */ = {
+		36C48CA71CF8701A0071804F /* Build configuration list for PBXNativeTarget "iOS Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36C48CA81CF8701A0071804F /* Debug */,
