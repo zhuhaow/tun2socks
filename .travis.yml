@@ -3,4 +3,4 @@ osx_image: xcode7.3
 
 script:
   - xctool -project tun2socks.xcodeproj -scheme "tun2socks" -sdk macosx10.11 -arch x86_64 build
-  - xctool -project tun2socks.xcodeproj -scheme "tun2socksios" -sdk iphoneos9.3 -arch arm64 build
+  - xctool -project tun2socks.xcodeproj -scheme "tun2socks-ios" -sdk iphoneos9.3 -arch arm64 build
