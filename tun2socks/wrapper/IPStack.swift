@@ -18,7 +18,7 @@ public class TUNIPStack {
     public static var stack = TUNIPStack()
 
     // The whole stack is running in this dispatch queue.
-    let processQueue = dispatch_queue_create("IPStackQueue", DISPATCH_QUEUE_SERIAL)!
+    let processQueue = dispatch_queue_create("tun2socks.IPStackQueue", DISPATCH_QUEUE_SERIAL)!
 
     let timer: dispatch_source_t
     let listenPCB: UnsafeMutablePointer<tcp_pcb>
