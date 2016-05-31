@@ -51,7 +51,8 @@ public class TUNIPStack {
 
         dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, NSEC_PER_SEC / 20, NSEC_PER_MSEC / 100)
         dispatch_source_set_event_handler(timer) {
-            self.checkTimeout()
+            [weak self] in
+            self?.checkTimeout()
         }
     }
 
