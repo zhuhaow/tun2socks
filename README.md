@@ -3,7 +3,7 @@ tun2socks
 ![](https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master)
 
 tun2socks is designed to work with the NetworkExtension framework available since
-iOS 9 and OS X 10.11. It is based on the lasted stable lwip with minimal
+iOS 9 and OS X 10.11. It is based on the latest stable lwip with minimal
 modification.
 
 Usage
