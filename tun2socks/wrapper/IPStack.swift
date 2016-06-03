@@ -6,16 +6,16 @@ public protocol IPStackDelegate: class {
 }
 
 func tcpAcceptFn(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tcp_pcb>, error: err_t) -> err_t {
-    return TUNIPStack.stack.didAcceptTCPSocket(pcb, error: error)
+    return TSIPStack.stack.didAcceptTCPSocket(pcb, error: error)
 }
 
 func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer<pbuf>, ipaddr: UnsafeMutablePointer<ip_addr_t>) -> err_t {
-    TUNIPStack.stack.writePBuf(buf)
+    TSIPStack.stack.writePBuf(buf)
     return err_t(ERR_OK)
 }
 
-public class TUNIPStack {
-    public static var stack = TUNIPStack()
+public class TSIPStack {
+    public static var stack = TSIPStack()
 
     // The whole stack is running in this dispatch queue.
     let processQueue = dispatch_queue_create("tun2socks.IPStackQueue", DISPATCH_QUEUE_SERIAL)!
