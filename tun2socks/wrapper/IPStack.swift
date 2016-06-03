@@ -23,8 +23,7 @@ public class TUNIPStack {
     let timer: dispatch_source_t
     let listenPCB: UnsafeMutablePointer<tcp_pcb>
 
-    /// This has to be set before calling `startProcessing()`
-    public var tunInterface: TunInterfaceProtocol!
+    public var outputBlock: (([NSData], [NSNumber]) -> ())!
 
     public weak var delegate: IPStackDelegate?
 
@@ -56,28 +55,8 @@ public class TUNIPStack {
         }
     }
 
-    /**
-     The `tunInterface` and `delegate` should be set before calling this.
-     */
-    public func startProcessing() {
-        dispatch_resume(timer)
-        readPackets()
-    }
-
     private func checkTimeout() {
         sys_check_timeouts()
-    }
-
-    func readPackets() {
-        // Any error should already be handled by `tunInterface`.
-        tunInterface.readPackets() { packets in
-            self.dispatch_call {
-                for packet in packets {
-                    self.recievedPacket(packet)
-                }
-            }
-            self.readPackets()
-        }
     }
 
     func dispatch_call(block: () -> ()) {
@@ -85,20 +64,22 @@ public class TUNIPStack {
     }
 
     func recievedPacket(data: NSData) {
-        // Due to the limitation of swift, if we want a zero-copy implemention, we have to change the definition of `pbuf.payload` to `const`, which is not possible.
-        // So we have to copy the data anyway.
-        let buf = pbuf_alloc(PBUF_RAW, UInt16(data.length), PBUF_RAM)
-        data.getBytes(buf.memory.payload, length: data.length)
+        dispatch_call {
+            // Due to the limitation of swift, if we want a zero-copy implemention, we have to change the definition of `pbuf.payload` to `const`, which is not possible.
+            // So we have to copy the data anyway.
+            let buf = pbuf_alloc(PBUF_RAW, UInt16(data.length), PBUF_RAM)
+            data.getBytes(buf.memory.payload, length: data.length)
 
-        // The `netif->input()` should be ip_input(). According to the docs of lwip, we do not pass packets into the `ip_input()` function directly.
-        netif_list.memory.input(buf, interface)
+            // The `netif->input()` should be ip_input(). According to the docs of lwip, we do not pass packets into the `ip_input()` function directly.
+            netif_list.memory.input(buf, self.interface)
+        }
     }
 
     func writePBuf(buf: UnsafeMutablePointer<pbuf>) {
         let data = NSMutableData(length: Int(buf.memory.tot_len))!
         pbuf_copy_partial(buf, data.mutableBytes, buf.memory.tot_len, 0)
         // Only support IPv4 as of now.
-        tunInterface.writePackets([data], versions: [Int(AF_INET)])
+        outputBlock([data], [Int(AF_INET)])
     }
 
     func didAcceptTCPSocket(pcb: UnsafeMutablePointer<tcp_pcb>, error: err_t) -> err_t {

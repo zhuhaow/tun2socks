@@ -68,7 +68,6 @@
 		369E75B41CF48F3800D52D3C /* timers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA771CEDCC71001E0AAF /* timers.h */; };
 		369E75B51CF48F3800D52D3C /* udp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA781CEDCC71001E0AAF /* udp.h */; };
 		36BC58531CEF514200E0E367 /* IPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* IPStack.swift */; };
-		36BC58551CF14BF000E0E367 /* TunInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58541CF14BF000E0E367 /* TunInterfaceProtocol.swift */; };
 		36BC58981CF2A33800E0E367 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58961CF2A33800E0E367 /* compat.c */; };
 		36C48CA51CF8701A0071804F /* tun2socks-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C48CA41CF8701A0071804F /* tun2socks-ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36C48CAC1CF8706E0071804F /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA191CEDCC71001E0AAF /* err.c */; };
@@ -93,7 +92,6 @@
 		36C48CC01CF8706F0071804F /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA451CEDCC71001E0AAF /* udp.c */; };
 		36C48CC11CF8706F0071804F /* IPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* IPStack.swift */; };
 		36C48CC21CF8706F0071804F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E702791CEEEB57002C2421 /* Socket.swift */; };
-		36C48CC31CF8706F0071804F /* TunInterfaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58541CF14BF000E0E367 /* TunInterfaceProtocol.swift */; };
 		36C48CC41CF8708B0071804F /* cc.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB541CEEAF05001E0AAF /* cc.h */; };
 		36C48CC51CF8708B0071804F /* perf.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB5B1CEEB851001E0AAF /* perf.h */; };
 		36C48CC61CF8708B0071804F /* sys_arch.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB5A1CEEB696001E0AAF /* sys_arch.h */; };
@@ -281,7 +279,6 @@
 		3642CB5B1CEEB851001E0AAF /* perf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
 		36BC584D1CEF477A00E0E367 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		36BC58521CEF514200E0E367 /* IPStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPStack.swift; sourceTree = "<group>"; };
-		36BC58541CF14BF000E0E367 /* TunInterfaceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunInterfaceProtocol.swift; sourceTree = "<group>"; };
 		36BC58961CF2A33800E0E367 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		36BC58971CF2A33800E0E367 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
 		36C48C9C1CF8667F0071804F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -580,7 +577,6 @@
 			children = (
 				36BC58521CEF514200E0E367 /* IPStack.swift */,
 				36E702791CEEEB57002C2421 /* Socket.swift */,
-				36BC58541CF14BF000E0E367 /* TunInterfaceProtocol.swift */,
 			);
 			path = wrapper;
 			sourceTree = "<group>";
@@ -816,7 +812,6 @@
 				3642CAE91CEDCC71001E0AAF /* tcp_in.c in Sources */,
 				3642CAE61CEDCC71001E0AAF /* stats.c in Sources */,
 				3642CADD1CEDCC71001E0AAF /* netif.c in Sources */,
-				36BC58551CF14BF000E0E367 /* TunInterfaceProtocol.swift in Sources */,
 				3642CACD1CEDCC71001E0AAF /* init.c in Sources */,
 				36E702781CEEDCCD002C2421 /* sys_arch.c in Sources */,
 				3642CAC41CEDCC71001E0AAF /* err.c in Sources */,
@@ -865,7 +860,6 @@
 				36C48CC01CF8706F0071804F /* udp.c in Sources */,
 				36C48CC11CF8706F0071804F /* IPStack.swift in Sources */,
 				36C48CC21CF8706F0071804F /* Socket.swift in Sources */,
-				36C48CC31CF8706F0071804F /* TunInterfaceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1071,7 @@
 				36C48CA91CF8701A0071804F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
