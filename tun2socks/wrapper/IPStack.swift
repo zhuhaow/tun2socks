@@ -1,7 +1,7 @@
 import Foundation
 import lwip
 
-public protocol IPStackDelegate: class {
+public protocol TSIPStackDelegate: class {
     func didAcceptTCPSocket(sock: TSTCPSocket)
 }
 
@@ -25,7 +25,7 @@ public class TSIPStack {
 
     public var outputBlock: (([NSData], [NSNumber]) -> ())!
 
-    public weak var delegate: IPStackDelegate?
+    public weak var delegate: TSIPStackDelegate?
 
     // Since all we need is a mock interface, we just use the loopback interface provided by lwip.
     // Do not need to add any interface.
