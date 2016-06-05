@@ -63,7 +63,7 @@ public class TSIPStack {
         dispatch_async(processQueue, block)
     }
 
-    func receivedPacket(data: NSData) {
+    public func receivedPacket(data: NSData) {
         dispatch_call {
             // Due to the limitation of swift, if we want a zero-copy implemention, we have to change the definition of `pbuf.payload` to `const`, which is not possible.
             // So we have to copy the data anyway.
