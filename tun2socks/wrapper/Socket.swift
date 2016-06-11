@@ -154,7 +154,7 @@ public class TSTCPSocket {
         // Note this is called synchronously since we need the result of `tcp_write()` and `tcp_write()` just puts the packets on the queue without sending them, so we can get the result immediately.
         var result = false
         dispatch_sync(queue) {
-            if !self.invalid {
+            if self.invalid {
                 result = false
                 return
             }
