@@ -159,7 +159,8 @@ public class TSTCPSocket {
                 return
             }
 
-            if tcp_write(self.pcb, data.bytes, UInt16(data.length), UInt8(TCP_WRITE_FLAG_COPY)) != err_t(ERR_OK) {
+            let err = tcp_write(self.pcb, data.bytes, UInt16(data.length), UInt8(TCP_WRITE_FLAG_COPY))
+            if  err != err_t(ERR_OK) {
                 result = false
             } else {
                 result = true
