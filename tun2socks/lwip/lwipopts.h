@@ -870,7 +870,7 @@
  * (2 * TCP_MSS) for things to work well
  */
 #ifndef TCP_WND
-#define TCP_WND                         (4 * TCP_MSS)
+#define TCP_WND                         0xFFFF
 #endif
 
 /**
@@ -903,7 +903,7 @@
  * an upper limit on the MSS advertised by the remote host.
  */
 #ifndef TCP_MSS
-#define TCP_MSS                         536
+#define TCP_MSS                         1460
 #endif
 
 /**
@@ -924,7 +924,7 @@
  * To achieve good performance, this should be at least 2 * TCP_MSS.
  */
 #ifndef TCP_SND_BUF
-#define TCP_SND_BUF                     (2 * TCP_MSS)
+#define TCP_SND_BUF                     TCP_WND
 #endif
 
 /**
@@ -932,7 +932,7 @@
  * as much as (2 * TCP_SND_BUF/TCP_MSS) for things to work.
  */
 #ifndef TCP_SND_QUEUELEN
-#define TCP_SND_QUEUELEN                ((4 * (TCP_SND_BUF) + (TCP_MSS - 1))/(TCP_MSS))
+#define TCP_SND_QUEUELEN                TCP_SNDQUEUELEN_OVERFLOW
 #endif
 
 /**
