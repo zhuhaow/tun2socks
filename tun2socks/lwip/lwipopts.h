@@ -822,7 +822,7 @@
  * LWIP_UDP==1: Turn on UDP.
  */
 #ifndef LWIP_UDP
-#define LWIP_UDP                        1
+#define LWIP_UDP                        0
 #endif
 
 /**
