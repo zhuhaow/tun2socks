@@ -150,6 +150,13 @@ public class TSTCPSocket {
         }
     }
 
+    /**
+     Send data to the source.
+
+     - parameter data: The data to send.
+
+     - returns: Whether the data is queued successfully. Currently, this method will only fail when the socket is already closed.
+     */
     public func writeData(data: NSData) -> Bool {
         // Note this is called synchronously since we need the result of `tcp_write()` and `tcp_write()` just puts the packets on the queue without sending them, so we can get the result immediately.
         var result = false

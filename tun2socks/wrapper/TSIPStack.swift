@@ -66,10 +66,17 @@ public class TSIPStack {
         dispatch_async(processQueue, block)
     }
 
+    /**
+     Suspend the timer. The timer should be suspended when the device is going to sleep.
+     */
     public func suspendTimer() {
         dispatch_suspend(timer)
     }
 
+    /**
+     Resume the timer when the device is awoke.
+     - note: Do not call this unless you suspend the timer, the timer starts automatically when the stack initializes.
+     */
     public func resumeTimer() {
         sys_restart_timeouts()
         dispatch_resume(timer)
