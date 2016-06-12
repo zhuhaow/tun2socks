@@ -66,6 +66,15 @@ public class TSIPStack {
         dispatch_async(processQueue, block)
     }
 
+    public func suspendTimer() {
+        dispatch_suspend(timer)
+    }
+
+    public func resumeTimer() {
+        sys_restart_timeouts()
+        dispatch_resume(timer)
+    }
+
     public func receivedPacket(data: NSData) {
         dispatch_call {
             // Due to the limitation of swift, if we want a zero-copy implemention, we have to change the definition of `pbuf.payload` to `const`, which is not possible.
