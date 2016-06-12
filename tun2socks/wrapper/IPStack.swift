@@ -48,7 +48,9 @@ public class TSIPStack {
 
         interface.memory.output = outputPCB
 
-        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, NSEC_PER_SEC / 20, NSEC_PER_MSEC / 100)
+        // note the default tcp_tmr interval is 250 ms.
+        // I don't know the best way to set leeway.
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, NSEC_PER_SEC / 4, NSEC_PER_SEC / 4)
         dispatch_source_set_event_handler(timer) {
             [weak self] in
             self?.checkTimeout()
