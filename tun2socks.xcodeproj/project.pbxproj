@@ -67,7 +67,7 @@
 		369E75B31CF48F3800D52D3C /* tcpip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA761CEDCC71001E0AAF /* tcpip.h */; };
 		369E75B41CF48F3800D52D3C /* timers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA771CEDCC71001E0AAF /* timers.h */; };
 		369E75B51CF48F3800D52D3C /* udp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA781CEDCC71001E0AAF /* udp.h */; };
-		36BC58531CEF514200E0E367 /* IPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* IPStack.swift */; };
+		36BC58531CEF514200E0E367 /* TSIPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* TSIPStack.swift */; };
 		36BC58981CF2A33800E0E367 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58961CF2A33800E0E367 /* compat.c */; };
 		36C48CA51CF8701A0071804F /* tun2socks-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C48CA41CF8701A0071804F /* tun2socks-ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36C48CAC1CF8706E0071804F /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA191CEDCC71001E0AAF /* err.c */; };
@@ -90,7 +90,7 @@
 		36C48CBE1CF8706F0071804F /* tcp_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA431CEDCC71001E0AAF /* tcp_out.c */; };
 		36C48CBF1CF8706F0071804F /* timers.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA441CEDCC71001E0AAF /* timers.c */; };
 		36C48CC01CF8706F0071804F /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA451CEDCC71001E0AAF /* udp.c */; };
-		36C48CC11CF8706F0071804F /* IPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* IPStack.swift */; };
+		36C48CC11CF8706F0071804F /* TSIPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58521CEF514200E0E367 /* TSIPStack.swift */; };
 		36C48CC21CF8706F0071804F /* TSTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E702791CEEEB57002C2421 /* TSTCPSocket.swift */; };
 		36C48CC41CF8708B0071804F /* cc.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB541CEEAF05001E0AAF /* cc.h */; };
 		36C48CC51CF8708B0071804F /* perf.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB5B1CEEB851001E0AAF /* perf.h */; };
@@ -278,7 +278,7 @@
 		3642CB5A1CEEB696001E0AAF /* sys_arch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sys_arch.h; sourceTree = "<group>"; };
 		3642CB5B1CEEB851001E0AAF /* perf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
 		36BC584D1CEF477A00E0E367 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		36BC58521CEF514200E0E367 /* IPStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPStack.swift; sourceTree = "<group>"; };
+		36BC58521CEF514200E0E367 /* TSIPStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSIPStack.swift; sourceTree = "<group>"; };
 		36BC58961CF2A33800E0E367 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		36BC58971CF2A33800E0E367 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
 		36C48C9C1CF8667F0071804F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -575,7 +575,7 @@
 		36BC584E1CEF4AE500E0E367 /* wrapper */ = {
 			isa = PBXGroup;
 			children = (
-				36BC58521CEF514200E0E367 /* IPStack.swift */,
+				36BC58521CEF514200E0E367 /* TSIPStack.swift */,
 				36E702791CEEEB57002C2421 /* TSTCPSocket.swift */,
 			);
 			path = wrapper;
@@ -828,7 +828,7 @@
 				3642CADF1CEDCC71001E0AAF /* raw.c in Sources */,
 				3642CAE81CEDCC71001E0AAF /* tcp.c in Sources */,
 				3642CAE71CEDCC71001E0AAF /* sys.c in Sources */,
-				36BC58531CEF514200E0E367 /* IPStack.swift in Sources */,
+				36BC58531CEF514200E0E367 /* TSIPStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +858,7 @@
 				36C48CBE1CF8706F0071804F /* tcp_out.c in Sources */,
 				36C48CBF1CF8706F0071804F /* timers.c in Sources */,
 				36C48CC01CF8706F0071804F /* udp.c in Sources */,
-				36C48CC11CF8706F0071804F /* IPStack.swift in Sources */,
+				36C48CC11CF8706F0071804F /* TSIPStack.swift in Sources */,
 				36C48CC21CF8706F0071804F /* TSTCPSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
