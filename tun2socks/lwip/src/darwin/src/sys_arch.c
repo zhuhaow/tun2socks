@@ -2,8 +2,6 @@
 #include "arch/sys_arch.h"
 #include "lwip/sys.h"
 
-#define BILLION 1000000000L
-
 u32_t sys_now(void) {
     uint64_t now = mach_absolute_time();
     mach_timebase_info_data_t info;
