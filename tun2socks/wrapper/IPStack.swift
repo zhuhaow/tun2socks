@@ -53,6 +53,7 @@ public class TSIPStack {
             [weak self] in
             self?.checkTimeout()
         }
+        dispatch_resume(timer)
     }
 
     private func checkTimeout() {

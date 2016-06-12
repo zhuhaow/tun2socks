@@ -1,11 +1,16 @@
-#include <time.h>
+#include <mach/mach_time.h>
 #include "arch/sys_arch.h"
 #include "lwip/sys.h"
 
+#define BILLION 1000000000L
+
 u32_t sys_now(void) {
-    clock_t i = clock() / (CLOCKS_PER_SEC / 1000);
+    uint64_t now = mach_absolute_time();
+    mach_timebase_info_data_t info;
+    mach_timebase_info(&info);
+    now = now * info.numer / info.denom / NSEC_PER_MSEC;
     
-    return (u32_t)i;
+    return (u32_t)(now);
 }
 
 void
