@@ -75,11 +75,14 @@ public class TSIPStack {
 
     /**
      Resume the timer when the device is awoke.
+
      - note: Do not call this unless you suspend the timer, the timer starts automatically when the stack initializes.
      */
     public func resumeTimer() {
-        sys_restart_timeouts()
-        dispatch_resume(timer)
+        dispatch_call {
+            sys_restart_timeouts()
+            dispatch_resume(self.timer)
+        }
     }
 
     public func receivedPacket(data: NSData) {

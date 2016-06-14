@@ -91,12 +91,12 @@ public class TSTCPSocket {
     let queue: dispatch_queue_t
     private var identity: SocketIdentity
 
-    var invalid: Bool {
-        return pcb == nil
+    var isValid: Bool {
+        return pcb != nil
     }
 
     public var connected: Bool {
-        return !invalid && pcb.memory.state.rawValue >= ESTABLISHED.rawValue && pcb.memory.state.rawValue < CLOSED.rawValue
+        return isValid && pcb.memory.state.rawValue >= ESTABLISHED.rawValue && pcb.memory.state.rawValue < CLOSED.rawValue
     }
 
     public weak var delegate: TSTCPSocketDelegate?
@@ -161,7 +161,7 @@ public class TSTCPSocket {
         // Note this is called synchronously since we need the result of `tcp_write()` and `tcp_write()` just puts the packets on the queue without sending them, so we can get the result immediately.
         var result = false
         dispatch_sync(queue) {
-            if self.invalid {
+            guard self.isValid else {
                 result = false
                 return
             }
@@ -179,7 +179,7 @@ public class TSTCPSocket {
 
     public func close() {
         dispatch_async(queue) {
-            guard !self.invalid else {
+            guard self.isValid else {
                 return
             }
 
