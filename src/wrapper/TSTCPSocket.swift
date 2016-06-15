@@ -91,7 +91,7 @@ func ==(left: SocketIdentity, right: SocketIdentity) -> Bool {
 /**
  The TCP socket class.
 
- - note: Unless one of `socketDidReset`, `socketDidAbort` or `socketDidClose` delegation methods is called, please do `close()`the socket actively and wait for `socketDidClose` before releasing it.
+ - note: Unless one of `socketDidReset(_:)`, `socketDidAbort(_:)` or `socketDidClose(_:)` delegation methods is called, please do `close()`the socket actively and wait for `socketDidClose(_:)` before releasing it.
  - note: This class is thread-safe.
  */
 public final class TSTCPSocket {
@@ -119,7 +119,7 @@ public final class TSTCPSocket {
     /**
      The delegate that handles various TCP events.
 
-     - warning: This should be set immediately when developer gets an instance of TSTCPSocket from `didAcceptTCPSocket(sock: TSTCPSocket)` on the same thread that calls it. Simply say, just set it when you get an instance of TSTCPSocket and never change it.
+     - warning: This should be set immediately when developer gets an instance of TSTCPSocket from `didAcceptTCPSocket(_:)` on the same thread that calls it. Simply say, just set it when you get an instance of TSTCPSocket.
      */
     public weak var delegate: TSTCPSocketDelegate?
 
