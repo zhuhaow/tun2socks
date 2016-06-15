@@ -26,6 +26,7 @@ func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer
 /// Then call `receivedPacket()` when a new IP packet is read from the TUN interface.
 ///
 /// There is a timer running internally. When the device is going to sleep (which means the timer will not fire for some time), then the timer must be paused by calling `suspendTimer()` and resumed by `resumeTimer` when the deivce wakes up.
+/// - note: This class is thread-safe.
 public class TSIPStack {
     /// The singleton stack instance that developer should use. The `init()` method is a private method, which means there will never be more than one IP stack running at the same time.
     public static var stack = TSIPStack()
@@ -41,7 +42,7 @@ public class TSIPStack {
     public var outputBlock: (([NSData], [NSNumber]) -> ())!
 
     /// The delegate instance.
-    /// - note: Setting this variable is not protected in the GCD queue, So this shoule be set before any input and shoule never change afterwards.
+    /// - note: Setting this variable is not protected in the GCD queue, so this shoule be set before any input and shoule never change afterwards.
     public weak var delegate: TSIPStackDelegate?
 
     // Since all we need is a mock interface, we just use the loopback interface provided by lwip.
