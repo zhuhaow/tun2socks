@@ -112,7 +112,7 @@ public final class TSTCPSocket {
     }
 
     /// Whether the socket is connected (we can receive and send data).
-    public var connected: Bool {
+    public var isConnected: Bool {
         return isValid && pcb.memory.state.rawValue >= ESTABLISHED.rawValue && pcb.memory.state.rawValue < CLOSED.rawValue
     }
 
