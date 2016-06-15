@@ -24,9 +24,9 @@ func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer
  This is the IP stack that receives and outputs IP packets.
 
  `outputBlock` and `delegate` should be set before any input.
- Then call `receivedPacket()` when a new IP packet is read from the TUN interface.
+ Then call `receivedPacket(_:)` when a new IP packet is read from the TUN interface.
 
- There is a timer running internally. When the device is going to sleep (which means the timer will not fire for some time), then the timer must be paused by calling `suspendTimer()` and resumed by `resumeTimer` when the deivce wakes up.
+ There is a timer running internally. When the device is going to sleep (which means the timer will not fire for some time), then the timer must be paused by calling `suspendTimer()` and resumed by `resumeTimer()` when the deivce wakes up.
 
  This class is thread-safe.
  */
