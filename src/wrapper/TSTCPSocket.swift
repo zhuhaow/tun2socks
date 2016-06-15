@@ -6,26 +6,32 @@ import lwip
  */
 public protocol TSTCPSocketDelegate: class {
     /**
-     The socket is closed on local side (FIN received), which means we will not read data anymore.
+     The socket is closed on tx side (FIN received). We will not read any data.
      */
     func localDidClose(socket: TSTCPSocket)
 
     /**
-     The socket is reseted (RST received), it should be released now.
+     The socket is reseted (RST received), it should be released immediately.
      */
     func socketDidReset(socket: TSTCPSocket)
 
     /**
-     The socket is aborted (RST sent). I do not know when will this happen, but just release it.
+     The socket is aborted (RST sent), it should be released immediately.
      */
     func socketDidAbort(socket: TSTCPSocket)
 
     /**
-     The socket can be released now. This will only be triggered if the socket is closed actively by calling `close()`.
+     The socket is closed. This will only be triggered if the socket is closed actively by calling `close()`. It should be released immediately.
      */
     func socketDidClose(socket: TSTCPSocket)
 
 
+    /**
+     Socket read data from local tx side.
+
+     - parameter data: The read data.
+     - parameter from: The socket object.
+     */
     func didReadData(data: NSData, from: TSTCPSocket)
 
     /**
@@ -62,8 +68,8 @@ func tcp_err_func(arg: UnsafeMutablePointer<Void>, error: err_t) {
     SocketDict.lookup(UnsafeMutablePointer<SocketIdentity>(arg).memory)?.errored(error)
 }
 
-class SocketDict {
-    static var socketDict = [SocketIdentity:TSTCPSocket]()
+struct SocketDict {
+    static var socketDict: [SocketIdentity:TSTCPSocket] = [:]
 
     static func lookup(id: SocketIdentity) -> TSTCPSocket? {
         return socketDict[id]
@@ -83,13 +89,19 @@ func ==(left: SocketIdentity, right: SocketIdentity) -> Bool {
 }
 
 /**
- Unless one of `socketDidReset`, `socketDidAbort` or `socketDidClose` is called, please do `close()`the socket actively and wait for `socketDidClose` before releasing it.
+ The TCP socket class.
+
+ - note: Unless one of `socketDidReset`, `socketDidAbort` or `socketDidClose` delegation methods is called, please do `close()`the socket actively and wait for `socketDidClose` before releasing it.
  */
 public final class TSTCPSocket {
     private var pcb: UnsafeMutablePointer<tcp_pcb>
+    /// The source IPv4 address.
     public let sourceAddress: in_addr
+    /// The destination IPv4 address
     public let destinationAddress: in_addr
+    /// The source port.
     public let sourcePort: UInt16
+    /// The destination port.
     public let destinationPort: UInt16
     let queue: dispatch_queue_t
     private var identity: SocketIdentity
@@ -98,6 +110,7 @@ public final class TSTCPSocket {
         return pcb != nil
     }
 
+    /// Whether the socket is connected (we can receive and send data).
     public var connected: Bool {
         return isValid && pcb.memory.state.rawValue >= ESTABLISHED.rawValue && pcb.memory.state.rawValue < CLOSED.rawValue
     }
@@ -154,7 +167,7 @@ public final class TSTCPSocket {
     }
 
     /**
-     Send data to the source.
+     Send data to local rx side.
 
      - parameter data: The data to send.
 
@@ -180,6 +193,9 @@ public final class TSTCPSocket {
         return result
     }
 
+    /**
+     Close the socket. The socket should be released immediately and should not be read or write again.
+     */
     public func close() {
         dispatch_async(queue) {
             guard self.isValid else {
