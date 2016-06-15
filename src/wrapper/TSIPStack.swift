@@ -3,6 +3,11 @@ import lwip
 
 /// The delegate that the developer should implement to handle what to do when a new TCP socket is connected.
 public protocol TSIPStackDelegate: class {
+    /**
+     A new TCP socket is accepted. This means we received a new TCP packet containing SYN signal.
+
+     - parameter sock: the socket object.
+     */
     func didAcceptTCPSocket(sock: TSTCPSocket)
 }
 
@@ -16,7 +21,13 @@ func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer
 }
 
 /// This is the IP stack that receives and outputs IP packets.
+///
+/// `outputBlock` and `delegate` should be set before any input.
+/// Then call `receivedPacket()` when a new IP packet is read from the TUN interface.
+///
+/// There is a timer running internally. When the device is going to sleep (which means the timer will not fire for some time), then the timer must be paused by calling `suspendTimer()` and resumed by `resumeTimer` when the deivce wakes up.
 public class TSIPStack {
+    /// The singleton stack instance that developer should use. The `init()` method is a private method, which means there will never be more than one IP stack running at the same time.
     public static var stack = TSIPStack()
 
     // The whole stack is running in this dispatch queue.
@@ -25,12 +36,16 @@ public class TSIPStack {
     let timer: dispatch_source_t
     let listenPCB: UnsafeMutablePointer<tcp_pcb>
 
+    /// When the IP stack decides to output some IP packets, this block is called.
+    /// - note: This should be set before any input.
     public var outputBlock: (([NSData], [NSNumber]) -> ())!
 
+    /// The delegate instance.
+    /// - note: Setting this variable is not protected in the GCD queue, So this shoule be set before any input and shoule never change afterwards.
     public weak var delegate: TSIPStackDelegate?
 
     // Since all we need is a mock interface, we just use the loopback interface provided by lwip.
-    // Do not need to add any interface.
+    // No need to add any interface.
     var interface: UnsafeMutablePointer<netif> {
         return netif_list
     }
@@ -87,6 +102,11 @@ public class TSIPStack {
         }
     }
 
+    /**
+     Input an IP packet.
+
+     - parameter data: the data containing the whole IP packet.
+     */
     public func receivedPacket(data: NSData) {
         dispatch_call {
             // Due to the limitation of swift, if we want a zero-copy implemention, we have to change the definition of `pbuf.payload` to `const`, which is not possible.
