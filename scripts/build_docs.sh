@@ -4,9 +4,9 @@
 export SOURCE_BRANCH="master"
 export DOC_BRANCH="gh-pages"
 
-git remote update
+git remote set-branches --add origin $DOC_BRANCH
 git fetch
-git checkout --track origin/$DOC_BRANCH
+git checkout $DOC_BRANCH
 
 # this is the script actually build docs
 ./scripts/build_docs.sh
