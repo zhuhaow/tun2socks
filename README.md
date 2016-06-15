@@ -14,7 +14,7 @@ All other protocols (UDP, ICMP, IGMP, ...) will not be supported since they are 
 
 Usage
 -----
-Fully documented API can be found [here](https://zhuhaow.github.io/tun2socks/).
+Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
 You may be more interested in using [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks.
 
