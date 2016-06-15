@@ -92,6 +92,7 @@ func ==(left: SocketIdentity, right: SocketIdentity) -> Bool {
  The TCP socket class.
 
  - note: Unless one of `socketDidReset`, `socketDidAbort` or `socketDidClose` delegation methods is called, please do `close()`the socket actively and wait for `socketDidClose` before releasing it.
+ - note: This class is thread-safe.
  */
 public final class TSTCPSocket {
     private var pcb: UnsafeMutablePointer<tcp_pcb>
@@ -115,6 +116,11 @@ public final class TSTCPSocket {
         return isValid && pcb.memory.state.rawValue >= ESTABLISHED.rawValue && pcb.memory.state.rawValue < CLOSED.rawValue
     }
 
+    /**
+     The delegate that handles various TCP events.
+
+     - warning: This should be set immediately when developer gets an instance of TSTCPSocket from `didAcceptTCPSocket(sock: TSTCPSocket)` on the same thread that calls it. Simply say, just set it when you get an instance of TSTCPSocket and never change it.
+     */
     public weak var delegate: TSTCPSocketDelegate?
 
     init(pcb: UnsafeMutablePointer<tcp_pcb>, queue: dispatch_queue_t) {
