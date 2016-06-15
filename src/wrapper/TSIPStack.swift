@@ -1,6 +1,7 @@
 import Foundation
 import lwip
 
+/// The delegate that the developer should implement to handle what to do when a new TCP socket is connected.
 public protocol TSIPStackDelegate: class {
     func didAcceptTCPSocket(sock: TSTCPSocket)
 }
@@ -14,6 +15,7 @@ func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer
     return err_t(ERR_OK)
 }
 
+/// This is the IP stack that receives and outputs IP packets.
 public class TSIPStack {
     public static var stack = TSIPStack()
 
