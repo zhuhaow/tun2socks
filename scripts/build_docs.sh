@@ -4,6 +4,8 @@
 export SOURCE_BRANCH="master"
 export DOC_BRANCH="gh-pages"
 
+git checkout $DOC_BRANCH
+
 # this is the script actually build docs
 ./scripts/build_docs.sh
 
