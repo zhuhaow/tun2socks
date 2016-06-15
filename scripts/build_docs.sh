@@ -4,17 +4,16 @@
 export SOURCE_BRANCH="master"
 export DOC_BRANCH="gh-pages"
 
+if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+    exit 0
+fi
+
 git remote set-branches --add origin $DOC_BRANCH
 git fetch
 git checkout $DOC_BRANCH
 
 # this is the script actually build docs
 ./scripts/build_docs.sh
-
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
-    echo "Skipping deploy; just doing a build."
-    exit 0
-fi
 
 # upload docs
 ./scripts/push_docs.sh
