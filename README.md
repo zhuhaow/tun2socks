@@ -16,6 +16,12 @@ Usage
 -----
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
+I recommand using [Carthage](https://github.com/Carthage/Carthage) to integrate tun2socks in your project by adding
+```
+github "zhuhaow/tun2socks"
+```
+to your `Cartfile`.
+
 You may be more interested in using [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks.
 
 IPv6 support
