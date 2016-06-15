@@ -313,10 +313,11 @@
 		3642C9F41CEDCC60001E0AAF = {
 			isa = PBXGroup;
 			children = (
-				36C48C9C1CF8667F0071804F /* README.md */,
-				36C48CA31CF8701A0071804F /* tun2socks-ios */,
 				3642C9FF1CEDCC60001E0AAF /* Products */,
-				3642CA001CEDCC60001E0AAF /* tun2socks */,
+				3642CA001CEDCC60001E0AAF /* src */,
+				36C48CA31CF8701A0071804F /* tun2socks-ios */,
+				368225B41D114ADF00E7B495 /* tun2socks-osx */,
+				36C48C9C1CF8667F0071804F /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -329,15 +330,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3642CA001CEDCC60001E0AAF /* tun2socks */ = {
+		3642CA001CEDCC60001E0AAF /* src */ = {
 			isa = PBXGroup;
 			children = (
 				3642CA091CEDCC71001E0AAF /* lwip */,
 				36BC584E1CEF4AE500E0E367 /* wrapper */,
-				3642CA031CEDCC60001E0AAF /* Info.plist */,
-				3642CA011CEDCC60001E0AAF /* tun2socks.h */,
 			);
-			path = tun2socks;
+			path = src;
 			sourceTree = "<group>";
 		};
 		3642CA091CEDCC71001E0AAF /* lwip */ = {
@@ -572,6 +571,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		368225B41D114ADF00E7B495 /* tun2socks-osx */ = {
+			isa = PBXGroup;
+			children = (
+				3642CA031CEDCC60001E0AAF /* Info.plist */,
+				3642CA011CEDCC60001E0AAF /* tun2socks.h */,
+			);
+			path = "tun2socks-osx";
+			sourceTree = "<group>";
+		};
 		36BC584E1CEF4AE500E0E367 /* wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,8 +592,8 @@
 		36C48CA31CF8701A0071804F /* tun2socks-ios */ = {
 			isa = PBXGroup;
 			children = (
-				36C48CA41CF8701A0071804F /* tun2socks-ios.h */,
 				36C48CA61CF8701A0071804F /* Info.plist */,
+				36C48CA41CF8701A0071804F /* tun2socks-ios.h */,
 			);
 			path = "tun2socks-ios";
 			sourceTree = "<group>";
