@@ -30,7 +30,7 @@ func outputPCB(interface: UnsafeMutablePointer<netif>, buf: UnsafeMutablePointer
 
  - note: This class is thread-safe.
  */
-public class TSIPStack {
+public final class TSIPStack {
     /// The singleton stack instance that developer should use. The `init()` method is a private method, which means there will never be more than one IP stack running at the same time.
     public static var stack = TSIPStack()
 

@@ -1,6 +1,9 @@
 import Foundation
 import lwip
 
+/**
+ The delegate that developer should implement to handle various TCP events.
+ */
 public protocol TSTCPSocketDelegate: class {
     /**
      The socket is closed on local side (FIN received), which means we will not read data anymore.
@@ -82,7 +85,7 @@ func ==(left: SocketIdentity, right: SocketIdentity) -> Bool {
 /**
  Unless one of `socketDidReset`, `socketDidAbort` or `socketDidClose` is called, please do `close()`the socket actively and wait for `socketDidClose` before releasing it.
  */
-public class TSTCPSocket {
+public final class TSTCPSocket {
     private var pcb: UnsafeMutablePointer<tcp_pcb>
     public let sourceAddress: in_addr
     public let destinationAddress: in_addr
