@@ -6,5 +6,4 @@ script:
   - xctool -project tun2socks.xcodeproj -scheme "tun2socks-iOS" -sdk iphoneos9.3 -arch arm64 build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 after_success:
-  - gem install jazzy --no-ri --no-rdoc
   - ./scripts/build_docs.sh
