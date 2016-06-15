@@ -16,7 +16,7 @@ Usage
 -----
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
-I recommand using [Carthage](https://github.com/Carthage/Carthage) to integrate tun2socks in your project by adding
+I recommend using [Carthage](https://github.com/Carthage/Carthage) to integrate tun2socks in your project by adding
 
 ```
 github "zhuhaow/tun2socks"
