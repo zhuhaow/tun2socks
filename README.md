@@ -17,6 +17,7 @@ Usage
 -----
 The overall structure of tun2socks:
 
+```
 ╔═══════════════════════╗                                                       
 ║sourceAddress: X.X.X.X ║                                                       
 ║    sourcePort: XX     ║                    writeData(_:)                      
@@ -26,6 +27,7 @@ The overall structure of tun2socks:
 │    Local    ◀──▶  TUN  ◀──▶ TSIPStack  ◀──▶ TSTCPSocket ├─────▶egate.didReadD│
 └─────────────┘  └───────┘  └────────────┘  └─────────────┘     │    ata()     │
                                                                 └──────────────┘
+```
 
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
