@@ -15,6 +15,18 @@ All other protocols (UDP, ICMP, IGMP, ...) will not be supported since they are 
 
 Usage
 -----
+The overall structure of tun2socks:
+
+╔═══════════════════════╗                                                       
+║sourceAddress: X.X.X.X ║                                                       
+║    sourcePort: XX     ║                    writeData(_:)                      
+╚═══════════════════════╝                          │                            
+                                                   │            ┌──────────────┐
+┌─────────────┐  ┌───────┐  ┌────────────┐  ┌──────▼──────┐     │TSTCPSocketDel│
+│    Local    ◀──▶  TUN  ◀──▶ TSIPStack  ◀──▶ TSTCPSocket ├─────▶egate.didReadD│
+└─────────────┘  └───────┘  └────────────┘  └─────────────┘     │    ata()     │
+                                                                └──────────────┘
+
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
 I recommend using [Carthage](https://github.com/Carthage/Carthage) to integrate tun2socks in your project by adding
