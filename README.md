@@ -31,15 +31,15 @@ The overall structure of tun2socks:
 
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
-I recommend using [Carthage](https://github.com/Carthage/Carthage) to integrate tun2socks in your project by adding
+[Carthage](https://github.com/Carthage/Carthage) is recommended to integrate tun2socks by adding
 
 ```
 github "zhuhaow/tun2socks"
 ```
 
-to your `Cartfile`.
+to `Cartfile`.
 
-You may be more interested in using [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks.
+Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks providing many more features to build a network app.
 
 IPv6 support
 ------------
