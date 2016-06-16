@@ -1,6 +1,7 @@
 tun2socks
 =========
 ![](https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master)
+[![GitHub version](https://badge.fury.io/gh/zhuhaow%2Ftun2socks.svg)](https://badge.fury.io/gh/zhuhaow%2Ftun2socks)
 
 tun2socks is designed to work with the NetworkExtension framework. It is based on the latest stable lwip with minimal modification.
 
