@@ -167,7 +167,9 @@ public final class TSTCPSocket {
             let data = NSMutableData(length: Int(buf.memory.tot_len))!
             pbuf_copy_partial(buf, data.mutableBytes, buf.memory.tot_len, 0)
             delegate?.didReadData(data, from: self)
-            tcp_recved(pcb, buf.memory.tot_len)
+            if isValid {
+                tcp_recved(pcb, buf.memory.tot_len)
+            }
             pbuf_free(buf)
         }
     }
