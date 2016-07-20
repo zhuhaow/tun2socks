@@ -37,9 +37,9 @@ Fully documented API reference can be found [here](https://zhuhaow.github.io/tun
 github "zhuhaow/tun2socks"
 ```
 
-to `Cartfile`.
+to the `Cartfile`.
 
-Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks providing many more features to build a network app.
+Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks and provides many features to build a proxy app.
 
 IPv6 support
 ------------
