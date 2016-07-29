@@ -45,3 +45,8 @@ IPv6 support
 ------------
 As of now, IPv6 is not supported since lwip 1.4 does not support dual stack.
 IPv6 will be supported in the next major version of lwip.
+
+## Known Issues
+
+The download speed is slow for some reason I do not know yet. I'm planing to fix it with the next release of lwip.
+
