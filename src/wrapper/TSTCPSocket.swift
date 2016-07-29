@@ -45,7 +45,14 @@ public protocol TSTCPSocketDelegate: class {
 
 // There is no way the error will be anything but ERR_OK, so the `error` parameter should be ignored.
 func tcp_recv_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tcp_pcb>, buf: UnsafeMutablePointer<pbuf>, error: err_t) -> err_t {
-    guard let socket = SocketDict.lookup(UnsafeMutablePointer<SocketIdentity>(arg).memory) else {
+    assert(error == err_t(ERR_OK))
+
+    guard arg != nil else {
+        tcp_abort(pcb)
+        return err_t(ERR_ABRT)
+    }
+
+    guard let socket = SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory) else {
         // we do not know what this socket is, abort it
         tcp_abort(pcb)
         return err_t(ERR_ABRT)
@@ -55,7 +62,12 @@ func tcp_recv_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tc
 }
 
 func tcp_sent_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tcp_pcb>, len: UInt16) -> err_t {
-    guard let socket = SocketDict.lookup(UnsafeMutablePointer<SocketIdentity>(arg).memory) else {
+    guard arg != nil else {
+        tcp_abort(pcb)
+        return err_t(ERR_ABRT)
+    }
+
+    guard let socket = SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory) else {
         // we do not know what this socket is, abort it
         tcp_abort(pcb)
         return err_t(ERR_ABRT)
@@ -65,27 +77,17 @@ func tcp_sent_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tc
 }
 
 func tcp_err_func(arg: UnsafeMutablePointer<Void>, error: err_t) {
-    SocketDict.lookup(UnsafeMutablePointer<SocketIdentity>(arg).memory)?.errored(error)
+    if arg != nil {
+    SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory)?.errored(error)
+    }
 }
 
 struct SocketDict {
-    static var socketDict: [SocketIdentity:TSTCPSocket] = [:]
+    static var socketDict: [Int:TSTCPSocket] = [:]
 
-    static func lookup(id: SocketIdentity) -> TSTCPSocket? {
+    static func lookup(id: Int) -> TSTCPSocket? {
         return socketDict[id]
     }
-}
-
-struct SocketIdentity: Hashable {
-    let id: Int
-
-    var hashValue: Int {
-        return id
-    }
-}
-
-func ==(left: SocketIdentity, right: SocketIdentity) -> Bool {
-    return left.id == right.id
 }
 
 /**
@@ -104,8 +106,12 @@ public final class TSTCPSocket {
     public let sourcePort: UInt16
     /// The destination port.
     public let destinationPort: UInt16
-    let queue: dispatch_queue_t
-    private var identity: SocketIdentity
+
+    private let queue: dispatch_queue_t
+    private var identity: Int
+    private let identityArg: UnsafeMutablePointer<Int>
+    private var closedSignalSend = false
+
 
     var isValid: Bool {
         return pcb != nil
@@ -133,12 +139,12 @@ public final class TSTCPSocket {
         sourceAddress = in_addr(s_addr: pcb.memory.remote_ip.addr)
         destinationAddress = in_addr(s_addr: pcb.memory.local_ip.addr)
 
-        identity = SocketIdentity(id: pcb.hashValue)
+        identity = pcb.hashValue
+        identityArg = UnsafeMutablePointer<Int>.alloc(1)
+        identityArg.memory = identity
         SocketDict.socketDict[identity] = self
 
-        withUnsafeMutablePointer(&identity) {
-            tcp_arg(pcb, UnsafeMutablePointer<Void>($0))
-        }
+        tcp_arg(pcb, identityArg)
         tcp_recv(pcb, tcp_recv_func)
         tcp_sent(pcb, tcp_sent_func)
         tcp_err(pcb, tcp_err_func)
@@ -210,6 +216,8 @@ public final class TSTCPSocket {
                 return
             }
 
+            // TODO: for some reason, this might crash
+//            tcp_arg(self.pcb, nil)
             tcp_close(self.pcb)
             self.release()
             // the lwip will handle the following things for us
@@ -222,6 +230,7 @@ public final class TSTCPSocket {
     }
 
     deinit {
+        identityArg.dealloc(1)
         SocketDict.socketDict.removeValueForKey(identity)
     }
 }
