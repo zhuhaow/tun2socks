@@ -187,32 +187,25 @@ public final class TSTCPSocket {
      Send data to local rx side.
 
      - parameter data: The data to send.
-
-     - returns: Whether the data is queued successfully. Currently, this method will only fail when the socket is already closed.
      */
-    public func writeData(data: NSData) -> Bool {
-        // Note this is called synchronously since we need the result of `tcp_write()` and `tcp_write()` just puts the packets on the queue without sending them, so we can get the result immediately.
-        var result = false
-        dispatch_sync(queue) {
+    public func writeData(data: NSData) {
+        dispatch_async(queue) {
             guard self.isValid else {
-                result = false
                 return
             }
 
             let err = tcp_write(self.pcb, data.bytes, UInt16(data.length), UInt8(TCP_WRITE_FLAG_COPY))
             if  err != err_t(ERR_OK) {
-                result = false
+                self.close()
             } else {
-                result = true
                 tcp_output(self.pcb)
             }
 
         }
-        return result
     }
 
     /**
-     Close the socket. The socket should be released immediately and should not be read or write again.
+     Close the socket. The socket should not be read or write again.
      */
     public func close() {
         dispatch_async(queue) {
@@ -220,9 +213,13 @@ public final class TSTCPSocket {
                 return
             }
 
-            // TODO: for some reason, this might crash
-//            tcp_arg(self.pcb, nil)
-            tcp_close(self.pcb)
+            tcp_arg(self.pcb, nil)
+            tcp_recv(self.pcb, nil)
+            tcp_sent(self.pcb, nil)
+            tcp_err(self.pcb, nil)
+
+            assert(tcp_close(self.pcb)==err_t(ERR_OK))
+
             self.release()
             // the lwip will handle the following things for us
             self.delegate?.socketDidClose(self)
