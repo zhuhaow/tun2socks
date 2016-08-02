@@ -47,10 +47,7 @@ public protocol TSTCPSocketDelegate: class {
 func tcp_recv_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tcp_pcb>, buf: UnsafeMutablePointer<pbuf>, error: err_t) -> err_t {
     assert(error == err_t(ERR_OK))
 
-    guard arg != nil else {
-        tcp_abort(pcb)
-        return err_t(ERR_ABRT)
-    }
+    assert(arg != nil)
 
     guard let socket = SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory) else {
         // we do not know what this socket is, abort it
@@ -62,10 +59,7 @@ func tcp_recv_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tc
 }
 
 func tcp_sent_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tcp_pcb>, len: UInt16) -> err_t {
-    guard arg != nil else {
-        tcp_abort(pcb)
-        return err_t(ERR_ABRT)
-    }
+    assert(arg != nil)
 
     guard let socket = SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory) else {
         // we do not know what this socket is, abort it
@@ -77,9 +71,9 @@ func tcp_sent_func(arg: UnsafeMutablePointer<Void>, pcb: UnsafeMutablePointer<tc
 }
 
 func tcp_err_func(arg: UnsafeMutablePointer<Void>, error: err_t) {
-    if arg != nil {
+    assert(arg != nil)
+
     SocketDict.lookup(UnsafeMutablePointer<Int>(arg).memory)?.errored(error)
-    }
 }
 
 struct SocketDict {
@@ -87,6 +81,15 @@ struct SocketDict {
 
     static func lookup(id: Int) -> TSTCPSocket? {
         return socketDict[id]
+    }
+
+    static func newKey() -> Int {
+        var key = arc4random()
+        while let _ = socketDict[Int(key)] {
+            key = arc4random()
+        }
+
+        return Int(key)
     }
 }
 
@@ -139,7 +142,7 @@ public final class TSTCPSocket {
         sourceAddress = in_addr(s_addr: pcb.memory.remote_ip.addr)
         destinationAddress = in_addr(s_addr: pcb.memory.local_ip.addr)
 
-        identity = pcb.hashValue
+        identity = SocketDict.newKey()
         identityArg = UnsafeMutablePointer<Int>.alloc(1)
         identityArg.memory = identity
         SocketDict.socketDict[identity] = self
@@ -201,6 +204,7 @@ public final class TSTCPSocket {
                 result = false
             } else {
                 result = true
+                tcp_output(self.pcb)
             }
 
         }
@@ -227,10 +231,10 @@ public final class TSTCPSocket {
 
     func release() {
         pcb = nil
+        identityArg.dealloc(1)
+        SocketDict.socketDict.removeValueForKey(identity)
     }
 
     deinit {
-        identityArg.dealloc(1)
-        SocketDict.socketDict.removeValueForKey(identity)
     }
 }
