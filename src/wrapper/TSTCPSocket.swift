@@ -226,6 +226,27 @@ public final class TSTCPSocket {
         }
     }
 
+    /**
+     Reset the socket. The socket should not be read or write again.
+     */
+    public func reset() {
+        dispatch_async(queue) {
+            guard self.isValid else {
+                return
+            }
+
+            tcp_arg(self.pcb, nil)
+            tcp_recv(self.pcb, nil)
+            tcp_sent(self.pcb, nil)
+            tcp_err(self.pcb, nil)
+
+            tcp_abort(self.pcb)
+            self.release()
+
+            self.delegate?.socketDidClose(self)
+        }
+    }
+
     func release() {
         pcb = nil
         identityArg.destroy()
