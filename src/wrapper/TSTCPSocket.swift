@@ -228,6 +228,7 @@ public final class TSTCPSocket {
 
     func release() {
         pcb = nil
+        identityArg.destroy()
         identityArg.dealloc(1)
         SocketDict.socketDict.removeValueForKey(identity)
     }
