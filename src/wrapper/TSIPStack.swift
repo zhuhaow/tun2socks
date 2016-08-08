@@ -37,7 +37,7 @@ public final class TSIPStack {
     // The whole stack is running in this dispatch queue.
     let processQueue = dispatch_queue_create("tun2socks.IPStackQueue", DISPATCH_QUEUE_SERIAL)!
 
-    let timer: dispatch_source_t
+    var timer: dispatch_source_t?
     let listenPCB: UnsafeMutablePointer<tcp_pcb>
 
     /// When the IP stack decides to output some IP packets, this block is called.
@@ -59,8 +59,6 @@ public final class TSIPStack {
     private init() {
         lwip_init()
 
-        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, processQueue)
-
         // add a listening pcb
         var pcb = tcp_new()
         var addr = ip_addr_any
@@ -70,15 +68,6 @@ public final class TSIPStack {
         tcp_accept(pcb, tcpAcceptFn)
 
         interface.memory.output = outputPCB
-
-        // note the default tcp_tmr interval is 250 ms.
-        // I don't know the best way to set leeway.
-        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, NSEC_PER_SEC / 4, NSEC_PER_SEC / 4)
-        dispatch_source_set_event_handler(timer) {
-            [weak self] in
-            self?.checkTimeout()
-        }
-        dispatch_resume(timer)
     }
 
     private func checkTimeout() {
@@ -93,19 +82,25 @@ public final class TSIPStack {
      Suspend the timer. The timer should be suspended when the device is going to sleep.
      */
     public func suspendTimer() {
-        dispatch_suspend(timer)
+        timer = nil
     }
 
     /**
      Resume the timer when the device is awoke.
 
-     - warning: Do not call this unless you suspend the timer, the timer starts automatically when the stack initializes.
+     - warning: Do not call this unless the stack is not resumed or you suspend the timer.
      */
     public func resumeTimer() {
-        dispatch_call {
-            sys_restart_timeouts()
-            dispatch_resume(self.timer)
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, processQueue)
+        // note the default tcp_tmr interval is 250 ms.
+        // I don't know the best way to set leeway.
+        dispatch_source_set_timer(timer!, DISPATCH_TIME_NOW, NSEC_PER_SEC / 4, NSEC_PER_SEC / 4)
+        dispatch_source_set_event_handler(timer!) {
+            [weak self] in
+            self?.checkTimeout()
         }
+        sys_restart_timeouts()
+        dispatch_resume(timer!)
     }
 
     /**
