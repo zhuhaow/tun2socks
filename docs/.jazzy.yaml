@@ -1,0 +1,12 @@
+output: "."
+source_directory: ../
+swift_version: 2.2
+author: Zhuhao Wang
+readme: ../README.md
+github_url: https://github.com/zhuhaow/tun2socks
+min_acl: public
+module: tun2socks
+
+theme: fullwidth
+
+
