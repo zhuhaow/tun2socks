@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-               BuildableName = "tun2socks.framework"
-               BlueprintName = "tun2socks-iOS"
+               BlueprintIdentifier = "36A718FE1D5B0AC100DC35F5"
+               BuildableName = "lwip.framework"
+               BlueprintName = "lwip-iOS"
                ReferencedContainer = "container:tun2socks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-            BuildableName = "tun2socks.framework"
-            BlueprintName = "tun2socks-iOS"
+            BlueprintIdentifier = "36A718FE1D5B0AC100DC35F5"
+            BuildableName = "lwip.framework"
+            BlueprintName = "lwip-iOS"
             ReferencedContainer = "container:tun2socks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "36C48CA11CF8701A0071804F"
-            BuildableName = "tun2socks.framework"
-            BlueprintName = "tun2socks-iOS"
+            BlueprintIdentifier = "36A718FE1D5B0AC100DC35F5"
+            BuildableName = "lwip.framework"
+            BlueprintName = "lwip-iOS"
             ReferencedContainer = "container:tun2socks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
