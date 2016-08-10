@@ -1,7 +1,6 @@
 tun2socks
 =========
-![](https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master)
-[![GitHub version](https://badge.fury.io/gh/zhuhaow%2Ftun2socks.svg)](https://badge.fury.io/gh/zhuhaow%2Ftun2socks)
+[![Build Status](https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master)](https://travis-ci.org/zhuhaow/tun2socks) [![GitHub release](https://img.shields.io/github/release/zhuhaow/tun2socks.svg?maxAge=2592000)](https://github.com/zhuhaow/tun2socks/releases) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-BSD_3--Clause-blue.svg)](https://raw.githubusercontent.com/zhuhaow/NEKit/master/LICENSE.md)
 
 tun2socks is designed to work with the NetworkExtension framework. It is based on the latest stable lwip with minimal modification.
 
