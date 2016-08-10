@@ -2,8 +2,24 @@ language: objective-c
 osx_image: xcode7.3
 
 script:
-  - xctool -project tun2socks.xcodeproj -scheme "tun2socks-macOS" -sdk macosx10.11 -arch x86_64 build
-  - xctool -project tun2socks.xcodeproj -scheme "tun2socks-iOS" -sdk iphoneos9.3 -arch arm64 build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+- xctool -project tun2socks.xcodeproj -scheme "tun2socks-macOS" -sdk macosx10.11 -arch
+  x86_64 build
+- xctool -project tun2socks.xcodeproj -scheme "tun2socks-iOS" -sdk iphoneos9.3 -arch
+  arm64 build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 after_success:
-  - ./docs/build_docs.sh
+- "./docs/build_docs.sh"
+
+before_deploy:
+- carthage build --no-skip-current
+- carthage archive tun2socks lwip
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: srFcDC3pQEinNV5XS9XsglspaU6Oz+OxdchqR49ubuMriFYJTDgAa6YBI+rJUmPzjVuWWy/LF5LSHDAuW7V8ZlZ6MVkJOnhwLabLSNJmONWdbbK+YNzCeQ5+KoxMERgd20VnFADzijJZ4Qug8Hr3ixIO0u0ma8yTlYKEkvU5rd6IqTrYazdZBQqiIhlB0TsBehanJDG3YIS+2chIIsNze/QVmJHrq0EmByDaFId9Egn72AYECClpaYCDc6nb7Gt3PjtAvCL47ZwHk2W4O1XjyZHSWzCXm78u7WfmNRzPnl2VvDW8AepVXaPL01vvMYs/bigXhaCGgH9n++fh9PqGWSbjvKt/aqirzi3fFh5aYId6KgSqPM/ZaGOPo2DokNnnBQTdd2kFBGCFuSieKMfn4xJj7XCItl7dYEKnUijQxkmmfAhyh2n+Bnj2IqhKbJjo4Xzv5e+ikBNAh1Jr1aTj/z73R9iMNYlTlkZ6zHnnKZOd8fji3cOuF1Io7Uvp0GRwZKnvizwCVHOkvM6S8IWEOiEVnBzdCanGwWWmoE3tTN5OFE56UBhhw+pTdjNW3WoV9XpAtQezLNKhD8vENUePUgFT+qKTXBT1Ynm4nxf7orcTw2ghO31vHcBf/vCu4jZJ5eZBMGmwk3hNokFYbWD3WXhz3NPzTAXyomU032brfbU=
+  file: tun2socks.framework.zip
+  on:
+    repo: zhuhaow/tun2socks
+    tags: true
