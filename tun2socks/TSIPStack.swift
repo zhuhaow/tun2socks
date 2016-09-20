@@ -35,7 +35,7 @@ public final class TSIPStack {
     public static var stack = TSIPStack()
 
     // The whole stack is running in this dispatch queue.
-    let processQueue = dispatch_queue_create("tun2socks.IPStackQueue", DISPATCH_QUEUE_SERIAL)!
+    let processQueue = dispatch_queue_create("tun2socks.IPStackQueue", DISPATCH_QUEUE_SERIAL)
 
     var timer: dispatch_source_t?
     let listenPCB: UnsafeMutablePointer<tcp_pcb>

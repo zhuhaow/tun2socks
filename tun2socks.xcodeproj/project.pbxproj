@@ -872,15 +872,19 @@
 				TargetAttributes = {
 					3642C9FD1CEDCC60001E0AAF = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					36A718F01D5B0A1B00DC35F5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					36A718FE1D5B0AC100DC35F5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					36C48CA11CF8701A0071804F = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -1130,6 +1134,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.tun2socks;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -1149,6 +1154,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.tun2socks;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -1168,6 +1174,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.lwip;
 				PRODUCT_NAME = lwip;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
 			};
 			name = Debug;
@@ -1188,6 +1195,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.osx.lwip;
 				PRODUCT_NAME = lwip;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
 			};
 			name = Release;
@@ -1209,6 +1217,7 @@
 				PRODUCT_NAME = lwip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip/";
 			};
@@ -1231,6 +1240,7 @@
 				PRODUCT_NAME = lwip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip/";
 				VALIDATE_PRODUCT = YES;
@@ -1255,6 +1265,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1277,6 +1288,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
