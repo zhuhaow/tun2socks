@@ -4,6 +4,8 @@ machine:
 dependencies:
   pre:
     - echo "2.3.1" > .ruby-version
+  override:
+    - echo "Do nothing"
 test:
   override:
     - xcodebuild -project tun2socks.xcodeproj -scheme "tun2socks-macOS" | xcpretty
