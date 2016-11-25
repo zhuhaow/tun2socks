@@ -1,0 +1,19 @@
+machine:
+  xcode:
+    version: "8.1"
+dependencies:
+  pre:
+    - echo "2.3.1" > .ruby-version
+test:
+  override:
+    - xcodebuild -project tun2socks.xcodeproj -scheme "tun2socks-macOS" | xcpretty
+    - xcodebuild -project tun2socks.xcodeproj -scheme "tun2socks-iOS" | xcpretty
+  post:
+    - bash <(curl -s https://codecov.io/bash)
+    - ./docs/build_docs.sh
+deployment:
+  release:
+    tag: /.*/
+    owner: zhuhaow
+    commands:
+      - bin/release_framework
