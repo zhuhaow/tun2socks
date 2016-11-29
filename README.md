@@ -38,7 +38,7 @@ github "zhuhaow/tun2socks"
 
 to the `Cartfile`.
 
-Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which wraps around tun2socks and provides many features to build a proxy app.
+Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which uses tun2socks and provides many features to build a proxy app.
 
 IPv6 support
 ------------
