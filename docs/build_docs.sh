@@ -9,6 +9,7 @@ set -e
 export SOURCE_BRANCH="master"
 
 if [ "$TRAVIS_PULL_REQUEST" != "" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+    echo "Only build for master branch"
     exit 0
 fi
 
