@@ -8,7 +8,7 @@ set -e
 # only build doc for master branch
 export SOURCE_BRANCH="master"
 
-if [ "$TRAVIS_PULL_REQUEST" != "" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false"e -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
     echo "Only build for master branch"
     exit 0
 fi
