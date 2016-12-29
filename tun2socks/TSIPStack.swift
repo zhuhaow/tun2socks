@@ -28,7 +28,7 @@ func outputPCB(_ interface: UnsafeMutablePointer<netif>?, buf: UnsafeMutablePoin
  
  There is a timer running internally. When the device is going to sleep (which means the timer will not fire for some time), then the timer must be paused by calling `suspendTimer()` and resumed by `resumeTimer()` when the deivce wakes up.
  
- - note: This class is thread-safe.
+ - note: This class is NOT thread-safe.
  */
 public final class TSIPStack {
     /// The singleton stack instance that developer should use. The `init()` method is a private method, which means there will never be more than one IP stack running at the same time.
