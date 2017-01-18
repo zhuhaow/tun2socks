@@ -54,7 +54,7 @@ func tcp_recv_func(_ arg: UnsafeMutableRawPointer?, pcb: UnsafeMutablePointer<tc
         tcp_abort(pcb!)
         return err_t(ERR_ABRT)
     }
-    socket.recved(buf!)
+    socket.recved(buf)
     return err_t(ERR_OK)
 }
 
