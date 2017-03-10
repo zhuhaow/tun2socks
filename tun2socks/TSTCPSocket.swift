@@ -195,7 +195,15 @@ public final class TSTCPSocket {
             return
         }
         
-        let err = tcp_write(pcb, (data as NSData).bytes, UInt16(data.count), UInt8(TCP_WRITE_FLAG_COPY))
+        let capacity = tcp_sndbuf(pcb)
+        let bytesToSend = min(data.count, capacity)
+        
+        let bytesLeft = data.count - bytesToSend
+        if bytesLeft > 0 {
+            print("TSTCPSocket: \(bytesLeft) bytes was dumpped")
+        }
+        
+        let err = tcp_write(pcb, (data as NSData).bytes, UInt16(bytesToSend), UInt8(TCP_WRITE_FLAG_COPY))
         if  err != err_t(ERR_OK) {
             close()
         } else {
