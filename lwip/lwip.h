@@ -321,6 +321,8 @@ err_t            tcp_shutdown(struct tcp_pcb *pcb, int shut_rx, int shut_tx);
 err_t            tcp_write   (struct tcp_pcb *pcb, const void *dataptr, u16_t len,
                               u8_t apiflags);
 
+u16_t tcp_available_bytes(struct tcp_pcb *pcb);
+
 void             tcp_setprio (struct tcp_pcb *pcb, u8_t prio);
 
 #define TCP_PRIO_MIN    1

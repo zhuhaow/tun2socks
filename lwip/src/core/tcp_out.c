@@ -708,7 +708,7 @@ memerr:
   return ERR_MEM;
 }
 
-u16_t available_bytes(struct tcp_pcb *pcb) {
+u16_t tcp_available_bytes(struct tcp_pcb *pcb) {
     return pcb->snd_buf;
 }
 
