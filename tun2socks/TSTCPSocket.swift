@@ -195,7 +195,7 @@ public final class TSTCPSocket {
             return
         }
         
-        let capacity = tcp_sndbuf(pcb)
+        let capacity = available_bytes(pcb)
         let bytesToSend = min(data.count, capacity)
         
         let bytesLeft = data.count - bytesToSend
