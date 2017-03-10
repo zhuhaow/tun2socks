@@ -119,7 +119,7 @@
  * To use this, MEMP_USE_CUSTOM_POOLS also has to be enabled.
  */
 #ifndef MEM_USE_POOLS
-#define MEM_USE_POOLS                   1
+#define MEM_USE_POOLS                   0
 #endif
 
 /**
@@ -137,7 +137,7 @@
  * inlude path somewhere.
  */
 #ifndef MEMP_USE_CUSTOM_POOLS
-#define MEMP_USE_CUSTOM_POOLS           1
+#define MEMP_USE_CUSTOM_POOLS           0
 #endif
 
 /**
