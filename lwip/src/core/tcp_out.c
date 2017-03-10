@@ -709,7 +709,7 @@ memerr:
 }
 
 u16_t tcp_available_bytes(struct tcp_pcb *pcb) {
-    return pcb->snd_buf;
+    return tcp_sndbuf(pcb);
 }
 
 /**
