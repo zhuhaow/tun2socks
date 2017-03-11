@@ -239,6 +239,10 @@ public final class TSTCPSocket {
                 data = data.subdata(in: Range(MaxLWIPTCPSize..<data.count))
             }
             
+            if data.count > 0 {
+                enqueueData(data)
+            }
+            
             for subData in results {
                 enqueueData(subData)
             }
@@ -246,16 +250,9 @@ public final class TSTCPSocket {
         else {
             data.enumerateBytes { (buffer, index, end) in
                 
-                if buffer.count <= MaxLWIPTCPSize {
-                    
-                    if let baseAddress = buffer.baseAddress, buffer.count > 0 {
-                        pendingDataQueue.append(buffer)
-                        bufferReferencingData[baseAddress] = data
-                    }
-                }
-                else {
-                    needSplit = true
-                    end = true
+                if let baseAddress = buffer.baseAddress, buffer.count > 0 {
+                    pendingDataQueue.append(buffer)
+                    bufferReferencingData[baseAddress] = data
                 }
             }
         }
