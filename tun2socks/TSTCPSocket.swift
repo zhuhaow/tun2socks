@@ -118,6 +118,7 @@ public final class TSTCPSocket {
     fileprivate let identityArg: UnsafeMutablePointer<Int>
     fileprivate var closedSignalSend = false
     
+    var pendingData = [Data]()
     
     var isValid: Bool {
         return pcb != nil
@@ -169,6 +170,7 @@ public final class TSTCPSocket {
     
     func sent(_ length: Int) {
         delegate?.didWriteData(length, from: self)
+        dequeuePendingData()
     }
     
     func recved(_ buf: UnsafeMutablePointer<pbuf>?) {
@@ -185,6 +187,34 @@ public final class TSTCPSocket {
         }
     }
     
+    private func tcpWrite(pointer:UnsafePointer<UInt8>?, validSize:UInt16) {
+        
+        if let pointer = pointer, validSize > 0 {
+            tcp_write(pcb, pointer, validSize, UInt8(0))
+            tcp_output(pcb)
+        }
+    }
+    
+    private func dequeuePendingData() {
+        
+        var capacity = Int(tcp_available_bytes(pcb))
+        
+        while pendingData.count > 0 && capacity > 0 {
+            
+            if pendingData[0].count <= capacity {
+                pendingData[0].enumerateBytes({ (buffer, index, end) in
+                    tcpWrite(pointer: buffer.baseAddress, validSize: UInt16(buffer.count))
+                })
+            }
+            else {
+                close()
+                break
+            }
+            
+            capacity = Int(tcp_available_bytes(pcb))
+        }
+    }
+    
     /**
      Send data to local rx side.
      
@@ -195,20 +225,8 @@ public final class TSTCPSocket {
             return
         }
         
-        let capacity = tcp_available_bytes(pcb)
-        let bytesToSend = min(data.count, Int(capacity))
-        
-        let bytesLeft = data.count - bytesToSend
-        if bytesLeft > 0 {
-            print("TSTCPSocket: \(bytesLeft) bytes was dumpped")
-        }
-        
-        let err = tcp_write(pcb, (data as NSData).bytes, UInt16(bytesToSend), UInt8(TCP_WRITE_FLAG_COPY))
-        if  err != err_t(ERR_OK) {
-            close()
-        } else {
-            tcp_output(pcb)
-        }
+        pendingData.append(data)
+        dequeuePendingData()
     }
     
     /**
@@ -223,6 +241,8 @@ public final class TSTCPSocket {
         tcp_recv(pcb, nil)
         tcp_sent(pcb, nil)
         tcp_err(pcb, nil)
+        
+        
         
         assert(tcp_close(pcb)==err_t(ERR_OK))
         
@@ -252,6 +272,7 @@ public final class TSTCPSocket {
     
     func release() {
         pcb = nil
+        pendingData.removeAll()
         identityArg.deinitialize()
         identityArg.deallocate(capacity: 1)
         SocketDict.socketDict.removeValue(forKey: identity)
