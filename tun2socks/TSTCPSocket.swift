@@ -172,9 +172,10 @@ public final class TSTCPSocket {
     }
     
     func sent(_ length: Int) {
+        print("Sent:\(length)")
         delegate?.didWriteData(length, from: self)
         sentCursor = sentCursor + length
-        while sentCursor >= pendingDataQueue[0].count {
+        while pendingDataQueue.count > 0 && sentCursor >= pendingDataQueue[0].count {
             sentCursor = sentCursor - pendingDataQueue[0].count
             pendingDataQueue.removeFirst()
         }
@@ -199,6 +200,7 @@ public final class TSTCPSocket {
         
         if Int32(tcp_write(pcb!, pointer, validSize, UInt8(0))) == ERR_OK {
             tcp_output(pcb)
+            print("Write:\(validSize)")
             return true
         }
         else {
