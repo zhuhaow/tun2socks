@@ -66,7 +66,8 @@ func tcp_sent_func(_ arg: UnsafeMutableRawPointer?, pcb: UnsafeMutablePointer<tc
         tcp_abort(pcb!)
         return err_t(ERR_ABRT)
     }
-    socket.sent(Int(len))
+    
+    socket.sent(pointer: arg, length: Int(len))
     return err_t(ERR_OK)
 }
 
@@ -118,7 +119,8 @@ public final class TSTCPSocket {
     fileprivate let identityArg: UnsafeMutablePointer<Int>
     fileprivate var closedSignalSend = false
     
-    var pendingData = [Data]()
+    var pendingDataQueue = [UnsafeBufferPointer<UInt8>]()
+    var bufferReferencingData = [UnsafeRawPointer : Data]()
     
     var isValid: Bool {
         return pcb != nil
@@ -168,9 +170,14 @@ public final class TSTCPSocket {
         }
     }
     
-    func sent(_ length: Int) {
+    func sent(pointer:UnsafeRawPointer?, length: Int) {
         delegate?.didWriteData(length, from: self)
-        dequeuePendingData()
+        
+        if let pointer = pointer {
+            bufferReferencingData.removeValue(forKey: pointer)
+        }
+        
+        tryDequeuePendingData()
     }
     
     func recved(_ buf: UnsafeMutablePointer<pbuf>?) {
@@ -195,24 +202,54 @@ public final class TSTCPSocket {
         }
     }
     
-    private func dequeuePendingData() {
+    private func tryDequeuePendingData() {
         
         var capacity = Int(tcp_available_bytes(pcb))
         
-        while pendingData.count > 0 && capacity > 0 {
+        while pendingDataQueue.count > 0 && capacity > 0 {
             
-            if pendingData[0].count <= capacity {
-                pendingData[0].enumerateBytes({ (buffer, index, end) in
-                    tcpWrite(pointer: buffer.baseAddress, validSize: UInt16(buffer.count))
-                })
+            if pendingDataQueue[0].count <= capacity {
+                tcpWrite(pointer: pendingDataQueue[0].baseAddress, validSize: UInt16(pendingDataQueue[0].count))
                 
-                pendingData.removeFirst()
-            }
-            else {
-                pendingData.removeFirst()
+                pendingDataQueue.removeFirst()
             }
             
             capacity = Int(tcp_available_bytes(pcb))
+        }
+    }
+    
+    func enqueueData(_ data:Data) {
+        
+        let MaxLWIPTCPSize = 0xFFFF
+        
+        var needSplit = false
+        data.enumerateBytes { (buffer, index, end) in
+            
+            if buffer.count <= MaxLWIPTCPSize {
+                
+                if let baseAddress = buffer.baseAddress, buffer.count > 0 {
+                    pendingDataQueue.append(buffer)
+                    bufferReferencingData[baseAddress] = data
+                }
+            }
+            else {
+                needSplit = true
+                end = true
+            }
+        }
+        
+        if needSplit {
+            var data = data
+            var results = [Data]()
+            while data.count > MaxLWIPTCPSize {
+                let subData = data.subdata(in: Range(0..<MaxLWIPTCPSize))
+                results.append(subData)
+                data = data.subdata(in: Range(MaxLWIPTCPSize..<data.count))
+            }
+            
+            for subData in results {
+                enqueueData(subData)
+            }
         }
     }
     
@@ -226,8 +263,8 @@ public final class TSTCPSocket {
             return
         }
         
-        pendingData.append(data)
-        dequeuePendingData()
+        enqueueData(data)
+        tryDequeuePendingData()
     }
     
     /**
@@ -273,7 +310,8 @@ public final class TSTCPSocket {
     
     func release() {
         pcb = nil
-        pendingData.removeAll()
+        pendingDataQueue.removeAll()
+        bufferReferencingData.removeAll()
         identityArg.deinitialize()
         identityArg.deallocate(capacity: 1)
         SocketDict.socketDict.removeValue(forKey: identity)
