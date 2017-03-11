@@ -67,7 +67,7 @@ func tcp_sent_func(_ arg: UnsafeMutableRawPointer?, pcb: UnsafeMutablePointer<tc
         return err_t(ERR_ABRT)
     }
     
-    socket.sent(pointer: arg, length: Int(len))
+    socket.sent(Int(len))
     return err_t(ERR_OK)
 }
 
@@ -119,8 +119,9 @@ public final class TSTCPSocket {
     fileprivate let identityArg: UnsafeMutablePointer<Int>
     fileprivate var closedSignalSend = false
     
-    var pendingDataQueue = [UnsafeBufferPointer<UInt8>]()
-    var bufferReferencingData = [UnsafeRawPointer : Data]()
+    var sentCursor = 0
+    var pendingBufferQueue = [UnsafeBufferPointer<UInt8>]()
+    var pendingDataQueue = [Data]()
     
     var isValid: Bool {
         return pcb != nil
@@ -170,13 +171,13 @@ public final class TSTCPSocket {
         }
     }
     
-    func sent(pointer:UnsafeRawPointer?, length: Int) {
+    func sent(_ length: Int) {
         delegate?.didWriteData(length, from: self)
-        
-        if let pointer = pointer {
-            bufferReferencingData.removeValue(forKey: pointer)
+        sentCursor = sentCursor + length
+        while sentCursor >= pendingDataQueue[0].count {
+            sentCursor = sentCursor - pendingDataQueue[0].count
+            pendingDataQueue.removeFirst()
         }
-        
         tryDequeuePendingData()
     }
     
@@ -194,11 +195,14 @@ public final class TSTCPSocket {
         }
     }
     
-    private func tcpWrite(pointer:UnsafePointer<UInt8>?, validSize:UInt16) {
+    private func tcpWrite(pointer:UnsafeRawPointer, validSize:UInt16) -> Bool {
         
-        if let pointer = pointer, validSize > 0 {
-            tcp_write(pcb, pointer, validSize, UInt8(0))
+        if Int32(tcp_write(pcb!, pointer, validSize, UInt8(0))) == ERR_OK {
             tcp_output(pcb)
+            return true
+        }
+        else {
+            return false
         }
     }
     
@@ -206,12 +210,20 @@ public final class TSTCPSocket {
         
         var capacity = Int(tcp_available_bytes(pcb))
         
-        while pendingDataQueue.count > 0 && capacity > 0 {
+        while pendingBufferQueue.count > 0 && capacity > 0 {
             
-            if pendingDataQueue[0].count <= capacity {
-                tcpWrite(pointer: pendingDataQueue[0].baseAddress, validSize: UInt16(pendingDataQueue[0].count))
-                
-                pendingDataQueue.removeFirst()
+            if let baseAddress = pendingBufferQueue[0].baseAddress, pendingBufferQueue[0].count <= capacity {
+                if tcpWrite(pointer: baseAddress, validSize: UInt16(pendingBufferQueue[0].count)) {
+                    pendingBufferQueue.removeFirst()
+                }
+                else {
+                    // The package is too large for current buffer.
+                    return
+                }
+            }
+            else {
+                // The package is too large for current buffer.
+                return
             }
             
             capacity = Int(tcp_available_bytes(pcb))
@@ -219,6 +231,10 @@ public final class TSTCPSocket {
     }
     
     func enqueueData(_ data:Data) {
+        
+        if data.isEmpty {
+            return
+        }
         
         let MaxLWIPTCPSize = 0xFFFF
         
@@ -248,11 +264,11 @@ public final class TSTCPSocket {
             }
         }
         else {
+            pendingDataQueue.append(data)
             data.enumerateBytes { (buffer, index, end) in
                 
-                if let baseAddress = buffer.baseAddress, buffer.count > 0 {
-                    pendingDataQueue.append(buffer)
-                    bufferReferencingData[baseAddress] = data
+                if buffer.baseAddress != nil && buffer.count > 0 {
+                    pendingBufferQueue.append(buffer)
                 }
             }
         }
@@ -315,8 +331,9 @@ public final class TSTCPSocket {
     
     func release() {
         pcb = nil
+        pendingBufferQueue.removeAll()
         pendingDataQueue.removeAll()
-        bufferReferencingData.removeAll()
+        sentCursor = 0
         identityArg.deinitialize()
         identityArg.deallocate(capacity: 1)
         SocketDict.socketDict.removeValue(forKey: identity)
