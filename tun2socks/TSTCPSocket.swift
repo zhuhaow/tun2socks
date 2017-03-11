@@ -258,7 +258,7 @@ public final class TSTCPSocket {
             }
             
             if data.count > 0 {
-                enqueueData(data)
+                results.append(data)
             }
             
             for subData in results {
