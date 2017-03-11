@@ -205,10 +205,11 @@ public final class TSTCPSocket {
                 pendingData[0].enumerateBytes({ (buffer, index, end) in
                     tcpWrite(pointer: buffer.baseAddress, validSize: UInt16(buffer.count))
                 })
+                
+                pendingData.removeFirst()
             }
             else {
-                close()
-                break
+                pendingData.removeFirst()
             }
             
             capacity = Int(tcp_available_bytes(pcb))
