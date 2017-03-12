@@ -82,6 +82,7 @@ public final class TSIPStack {
      Suspend the timer. The timer should be suspended when the device is going to sleep.
      */
     public func suspendTimer() {
+        timer?.cancel()
         timer = nil
     }
     
@@ -94,7 +95,7 @@ public final class TSIPStack {
         timer = DispatchSource.makeTimerSource(queue: processQueue)
         // note the default tcp_tmr interval is 250 ms.
         // I don't know the best way to set leeway.
-        timer!.scheduleRepeating(deadline: DispatchTime.distantFuture , interval: DispatchTimeInterval.microseconds(250), leeway: DispatchTimeInterval.microseconds(250))
+        timer!.scheduleRepeating(deadline: .now(), interval: .microseconds(250), leeway: .microseconds(250))
         timer!.setEventHandler {
             [weak self] in
             self?.checkTimeout()
