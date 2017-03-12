@@ -230,7 +230,7 @@ public final class TSTCPSocket {
         }
     }
     
-    func enqueueData(_ data:Data) {
+    private func enqueueData(_ data:Data) {
         
         if data.isEmpty {
             return
