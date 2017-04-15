@@ -78,23 +78,19 @@ func tcp_err_func(_ arg: UnsafeMutableRawPointer?, error: err_t) {
 }
 
 struct SocketDict {
-    static var socketDict: [Int:TSTCPSocket] = [:]
-    
-    static func lookup(_ id: Int) -> TSTCPSocket? {
+    static var socketDict: [UInt32:TSTCPSocket] = [:]
+    static var beginKey:UInt32 = 0
+    static func lookup(_ id: UInt32) -> TSTCPSocket? {
         return socketDict[id]
     }
     
     static func lookup(_ arg: UnsafeMutableRawPointer) -> TSTCPSocket? {
-        return SocketDict.lookup(arg.bindMemory(to: Int.self, capacity: 1).pointee)
+        return SocketDict.lookup(arg.bindMemory(to: UInt32.self, capacity: 1).pointee)
     }
     
-    static func newKey() -> Int {
-        var key = arc4random()
-        while let _ = socketDict[Int(key)] {
-            key = arc4random()
-        }
-        
-        return Int(key)
+    static func newKey() -> UInt32 {
+        beginKey = beginKey &+ 1
+        return beginKey
     }
 }
 
@@ -115,8 +111,8 @@ public final class TSTCPSocket {
     /// The destination port.
     public let destinationPort: UInt16
     
-    fileprivate var identity: Int
-    fileprivate let identityArg: UnsafeMutablePointer<Int>
+    fileprivate var identity: UInt32
+    fileprivate let identityArg: UnsafeMutablePointer<UInt32>
     fileprivate var closedSignalSend = false
     
     var sentCursor = 0
@@ -149,7 +145,7 @@ public final class TSTCPSocket {
         destinationAddress = in_addr(s_addr: pcb.pointee.local_ip.addr)
         
         identity = SocketDict.newKey()
-        identityArg = UnsafeMutablePointer<Int>.allocate(capacity: 1)
+        identityArg = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
         identityArg.pointee = identity
         SocketDict.socketDict[identity] = self
         
