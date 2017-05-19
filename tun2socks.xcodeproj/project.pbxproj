@@ -7,6 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13FAB06D1ECE6CD1006DC6A7 /* ip_addr.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2B1CEDCC71001E0AAF /* ip_addr.c */; };
+		13FAB06E1ECE6CD6006DC6A7 /* def.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA201CEDCC71001E0AAF /* def.c */; };
+		13FAB06F1ECE6CD9006DC6A7 /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA191CEDCC71001E0AAF /* err.c */; };
+		13FAB0711ECE6CE9006DC6A7 /* mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA331CEDCC71001E0AAF /* mem.c */; };
+		13FAB0721ECE6CEE006DC6A7 /* tcp_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA431CEDCC71001E0AAF /* tcp_out.c */; };
+		13FAB0731ECE6CFB006DC6A7 /* ip_frag.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2C1CEDCC71001E0AAF /* ip_frag.c */; };
+		13FAB0741ECE6D01006DC6A7 /* pbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA361CEDCC71001E0AAF /* pbuf.c */; };
+		13FAB0751ECE6D06006DC6A7 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA231CEDCC71001E0AAF /* init.c */; };
+		13FAB0761ECE6D0A006DC6A7 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA451CEDCC71001E0AAF /* udp.c */; };
+		13FAB0771ECE6D11006DC6A7 /* inet_chksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA291CEDCC71001E0AAF /* inet_chksum.c */; };
+		13FAB0781ECE6D17006DC6A7 /* timers.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA441CEDCC71001E0AAF /* timers.c */; };
+		13FAB0791ECE6D1F006DC6A7 /* tcp_in.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA421CEDCC71001E0AAF /* tcp_in.c */; };
+		13FAB07A1ECE6D24006DC6A7 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA281CEDCC71001E0AAF /* inet.c */; };
+		13FAB07B1ECE6D28006DC6A7 /* memp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA341CEDCC71001E0AAF /* memp.c */; };
+		13FAB07C1ECE6D2D006DC6A7 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58961CF2A33800E0E367 /* compat.c */; };
+		13FAB07D1ECE6D3A006DC6A7 /* netif.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA351CEDCC71001E0AAF /* netif.c */; };
+		13FAB07E1ECE6D40006DC6A7 /* raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA371CEDCC71001E0AAF /* raw.c */; };
+		13FAB07F1ECE6D46006DC6A7 /* sys_arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 36E702771CEEDCCD002C2421 /* sys_arch.c */; };
+		13FAB0801ECE6D50006DC6A7 /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA411CEDCC71001E0AAF /* tcp.c */; };
+		13FAB0811ECE6D55006DC6A7 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA401CEDCC71001E0AAF /* sys.c */; };
+		13FAB0821ECE6D5D006DC6A7 /* ip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2A1CEDCC71001E0AAF /* ip.c */; };
+		13FAB0831ECE6D76006DC6A7 /* ip_addr.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2B1CEDCC71001E0AAF /* ip_addr.c */; };
+		13FAB0841ECE6D7B006DC6A7 /* def.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA201CEDCC71001E0AAF /* def.c */; };
+		13FAB0851ECE6D82006DC6A7 /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA191CEDCC71001E0AAF /* err.c */; };
+		13FAB0861ECE6D89006DC6A7 /* mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA331CEDCC71001E0AAF /* mem.c */; };
+		13FAB0871ECE6D91006DC6A7 /* tcp_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA431CEDCC71001E0AAF /* tcp_out.c */; };
+		13FAB0881ECE6D96006DC6A7 /* ip_frag.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2C1CEDCC71001E0AAF /* ip_frag.c */; };
+		13FAB0891ECE6D9B006DC6A7 /* pbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA361CEDCC71001E0AAF /* pbuf.c */; };
+		13FAB08A1ECE6DA0006DC6A7 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA231CEDCC71001E0AAF /* init.c */; };
+		13FAB08B1ECE6DA4006DC6A7 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA451CEDCC71001E0AAF /* udp.c */; };
+		13FAB08C1ECE6DA9006DC6A7 /* inet_chksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA291CEDCC71001E0AAF /* inet_chksum.c */; };
+		13FAB08D1ECE6DAD006DC6A7 /* timers.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA441CEDCC71001E0AAF /* timers.c */; };
+		13FAB08E1ECE6DB8006DC6A7 /* tcp_in.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA421CEDCC71001E0AAF /* tcp_in.c */; };
+		13FAB08F1ECE6DBD006DC6A7 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA281CEDCC71001E0AAF /* inet.c */; };
+		13FAB0901ECE6DC2006DC6A7 /* memp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA341CEDCC71001E0AAF /* memp.c */; };
+		13FAB0911ECE6DC8006DC6A7 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BC58961CF2A33800E0E367 /* compat.c */; };
+		13FAB0921ECE6DCF006DC6A7 /* netif.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA351CEDCC71001E0AAF /* netif.c */; };
+		13FAB0931ECE6DD4006DC6A7 /* raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA371CEDCC71001E0AAF /* raw.c */; };
+		13FAB0941ECE6DDA006DC6A7 /* sys_arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 36E702771CEEDCCD002C2421 /* sys_arch.c */; };
+		13FAB0951ECE6DE1006DC6A7 /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA411CEDCC71001E0AAF /* tcp.c */; };
+		13FAB0961ECE6DE5006DC6A7 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA401CEDCC71001E0AAF /* sys.c */; };
+		13FAB0971ECE6DEB006DC6A7 /* ip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3642CA2A1CEDCC71001E0AAF /* ip.c */; };
 		369E758E1CF48F3800D52D3C /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA591CEDCC71001E0AAF /* api.h */; };
 		369E758F1CF48F3800D52D3C /* api_msg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA5A1CEDCC71001E0AAF /* api_msg.h */; };
 		369E75901CF48F3800D52D3C /* arch.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA5B1CEDCC71001E0AAF /* arch.h */; };
@@ -149,6 +191,7 @@
 		36C48CF81CF871D50071804F /* lwipopts.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CB4E1CEDCD6E001E0AAF /* lwipopts.h */; };
 		36E44A001CF2EA9500185DBF /* tun2socks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA011CEDCC60001E0AAF /* tun2socks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36E7027A1CEEEB57002C2421 /* TSTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E702791CEEEB57002C2421 /* TSTCPSocket.swift */; };
+		DD3732621E77A10F00C63D54 /* liblwip_ios.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDC823591E6A1DFB009F695F /* liblwip_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +210,28 @@
 			remoteInfo = "lwip-iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DD98F2971E6B6FA10042D69C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC823571E6A1DFB009F695F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /workspace/newedge_core/libs/lwip;
+			dstSubfolderSpec = 0;
+			files = (
+				DD3732621E77A10F00C63D54 /* liblwip_ios.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3642C9FE1CEDCC60001E0AAF /* tun2socks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = tun2socks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +378,8 @@
 		36E44A9E1CF3EB6B00185DBF /* slipif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = slipif.h; sourceTree = "<group>"; };
 		36E702771CEEDCCD002C2421 /* sys_arch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sys_arch.c; sourceTree = "<group>"; };
 		36E702791CEEEB57002C2421 /* TSTCPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSTCPSocket.swift; sourceTree = "<group>"; };
+		DD98F29B1E6B6FA10042D69C /* liblwip_osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblwip_osx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC823591E6A1DFB009F695F /* liblwip_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblwip_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +413,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD98F2961E6B6FA10042D69C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC823561E6A1DFB009F695F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -370,6 +451,8 @@
 				36C48CA21CF8701A0071804F /* tun2socks.framework */,
 				36A718F11D5B0A1B00DC35F5 /* lwip.framework */,
 				36A718FF1D5B0AC100DC35F5 /* lwip.framework */,
+				DDC823591E6A1DFB009F695F /* liblwip_ios.a */,
+				DD98F29B1E6B6FA10042D69C /* liblwip_osx.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -861,6 +944,40 @@
 			productReference = 36C48CA21CF8701A0071804F /* tun2socks.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		DD98F27F1E6B6FA10042D69C /* lwip_osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD98F2981E6B6FA10042D69C /* Build configuration list for PBXNativeTarget "lwip_osx" */;
+			buildPhases = (
+				DD98F2801E6B6FA10042D69C /* Sources */,
+				DD98F2961E6B6FA10042D69C /* Frameworks */,
+				DD98F2971E6B6FA10042D69C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lwip_osx;
+			productName = lwip_ios;
+			productReference = DD98F29B1E6B6FA10042D69C /* liblwip_osx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DDC823581E6A1DFB009F695F /* lwip_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC823611E6A1DFB009F695F /* Build configuration list for PBXNativeTarget "lwip_ios" */;
+			buildPhases = (
+				DDC823551E6A1DFB009F695F /* Sources */,
+				DDC823561E6A1DFB009F695F /* Frameworks */,
+				DDC823571E6A1DFB009F695F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lwip_ios;
+			productName = lwip_ios;
+			productReference = DDC823591E6A1DFB009F695F /* liblwip_ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -886,6 +1003,12 @@
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0810;
 					};
+					DD98F27F1E6B6FA10042D69C = {
+						CreatedOnToolsVersion = 8.2.1;
+					};
+					DDC823581E6A1DFB009F695F = {
+						CreatedOnToolsVersion = 8.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 3642C9F81CEDCC60001E0AAF /* Build configuration list for PBXProject "tun2socks" */;
@@ -904,6 +1027,8 @@
 				36C48CA11CF8701A0071804F /* tun2socks-iOS */,
 				36A718F01D5B0A1B00DC35F5 /* lwip-macOS */,
 				36A718FE1D5B0AC100DC35F5 /* lwip-iOS */,
+				DDC823581E6A1DFB009F695F /* lwip_ios */,
+				DD98F27F1E6B6FA10042D69C /* lwip_osx */,
 			);
 		};
 /* End PBXProject section */
@@ -1011,6 +1136,62 @@
 			files = (
 				36C48CC11CF8706F0071804F /* TSIPStack.swift in Sources */,
 				36C48CC21CF8706F0071804F /* TSTCPSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD98F2801E6B6FA10042D69C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13FAB0971ECE6DEB006DC6A7 /* ip.c in Sources */,
+				13FAB0961ECE6DE5006DC6A7 /* sys.c in Sources */,
+				13FAB0951ECE6DE1006DC6A7 /* tcp.c in Sources */,
+				13FAB0941ECE6DDA006DC6A7 /* sys_arch.c in Sources */,
+				13FAB0931ECE6DD4006DC6A7 /* raw.c in Sources */,
+				13FAB0921ECE6DCF006DC6A7 /* netif.c in Sources */,
+				13FAB0911ECE6DC8006DC6A7 /* compat.c in Sources */,
+				13FAB0901ECE6DC2006DC6A7 /* memp.c in Sources */,
+				13FAB08F1ECE6DBD006DC6A7 /* inet.c in Sources */,
+				13FAB08E1ECE6DB8006DC6A7 /* tcp_in.c in Sources */,
+				13FAB08D1ECE6DAD006DC6A7 /* timers.c in Sources */,
+				13FAB08C1ECE6DA9006DC6A7 /* inet_chksum.c in Sources */,
+				13FAB08B1ECE6DA4006DC6A7 /* udp.c in Sources */,
+				13FAB08A1ECE6DA0006DC6A7 /* init.c in Sources */,
+				13FAB0891ECE6D9B006DC6A7 /* pbuf.c in Sources */,
+				13FAB0881ECE6D96006DC6A7 /* ip_frag.c in Sources */,
+				13FAB0871ECE6D91006DC6A7 /* tcp_out.c in Sources */,
+				13FAB0861ECE6D89006DC6A7 /* mem.c in Sources */,
+				13FAB0851ECE6D82006DC6A7 /* err.c in Sources */,
+				13FAB0841ECE6D7B006DC6A7 /* def.c in Sources */,
+				13FAB0831ECE6D76006DC6A7 /* ip_addr.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC823551E6A1DFB009F695F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13FAB0821ECE6D5D006DC6A7 /* ip.c in Sources */,
+				13FAB0811ECE6D55006DC6A7 /* sys.c in Sources */,
+				13FAB0801ECE6D50006DC6A7 /* tcp.c in Sources */,
+				13FAB07F1ECE6D46006DC6A7 /* sys_arch.c in Sources */,
+				13FAB07E1ECE6D40006DC6A7 /* raw.c in Sources */,
+				13FAB07D1ECE6D3A006DC6A7 /* netif.c in Sources */,
+				13FAB07C1ECE6D2D006DC6A7 /* compat.c in Sources */,
+				13FAB07B1ECE6D28006DC6A7 /* memp.c in Sources */,
+				13FAB07A1ECE6D24006DC6A7 /* inet.c in Sources */,
+				13FAB0791ECE6D1F006DC6A7 /* tcp_in.c in Sources */,
+				13FAB0781ECE6D17006DC6A7 /* timers.c in Sources */,
+				13FAB0771ECE6D11006DC6A7 /* inet_chksum.c in Sources */,
+				13FAB0761ECE6D0A006DC6A7 /* udp.c in Sources */,
+				13FAB0751ECE6D06006DC6A7 /* init.c in Sources */,
+				13FAB0741ECE6D01006DC6A7 /* pbuf.c in Sources */,
+				13FAB0731ECE6CFB006DC6A7 /* ip_frag.c in Sources */,
+				13FAB0721ECE6CEE006DC6A7 /* tcp_out.c in Sources */,
+				13FAB0711ECE6CE9006DC6A7 /* mem.c in Sources */,
+				13FAB06F1ECE6CD9006DC6A7 /* err.c in Sources */,
+				13FAB06E1ECE6CD6006DC6A7 /* def.c in Sources */,
+				13FAB06D1ECE6CD1006DC6A7 /* ip_addr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,6 +1480,79 @@
 			};
 			name = Release;
 		};
+		DD98F2991E6B6FA10042D69C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.12;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DD98F29A1E6B6FA10042D69C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.12;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DDC8235F1E6A1DFB009F695F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+				);
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.2;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DDC823601E6A1DFB009F695F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+				);
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/lwip";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.2;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1343,6 +1597,24 @@
 			buildConfigurations = (
 				36C48CA81CF8701A0071804F /* Debug */,
 				36C48CA91CF8701A0071804F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD98F2981E6B6FA10042D69C /* Build configuration list for PBXNativeTarget "lwip_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD98F2991E6B6FA10042D69C /* Debug */,
+				DD98F29A1E6B6FA10042D69C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDC823611E6A1DFB009F695F /* Build configuration list for PBXNativeTarget "lwip_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC8235F1E6A1DFB009F695F /* Debug */,
+				DDC823601E6A1DFB009F695F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
