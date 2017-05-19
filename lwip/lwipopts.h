@@ -536,7 +536,7 @@
  * on recv operations, you also have to set IP_SOF_BROADCAST_RECV=1.
  */
 #ifndef IP_SOF_BROADCAST
-#define IP_SOF_BROADCAST                0
+#define IP_SOF_BROADCAST                1
 #endif
 
 /**
@@ -544,7 +544,7 @@
  * filter on recv operations.
  */
 #ifndef IP_SOF_BROADCAST_RECV
-#define IP_SOF_BROADCAST_RECV           0
+#define IP_SOF_BROADCAST_RECV           1
 #endif
 
 /**
@@ -822,14 +822,14 @@
  * LWIP_UDP==1: Turn on UDP.
  */
 #ifndef LWIP_UDP
-#define LWIP_UDP                        0
+#define LWIP_UDP                        1
 #endif
 
 /**
  * LWIP_UDPLITE==1: Turn on UDP-Lite. (Requires LWIP_UDP)
  */
 #ifndef LWIP_UDPLITE
-#define LWIP_UDPLITE                    0
+#define LWIP_UDPLITE                    1
 #endif
 
 /**
@@ -1829,6 +1829,7 @@
  * compared against this value. If it is smaller, then debugging
  * messages are written.
  */
+
 #ifndef LWIP_DBG_MIN_LEVEL
 #define LWIP_DBG_MIN_LEVEL              LWIP_DBG_LEVEL_ALL
 #endif
