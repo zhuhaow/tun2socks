@@ -192,6 +192,7 @@
 		36E44A001CF2EA9500185DBF /* tun2socks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3642CA011CEDCC60001E0AAF /* tun2socks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36E7027A1CEEEB57002C2421 /* TSTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E702791CEEEB57002C2421 /* TSTCPSocket.swift */; };
 		DD3732621E77A10F00C63D54 /* liblwip_ios.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDC823591E6A1DFB009F695F /* liblwip_ios.a */; };
+		DD5CF4821ED69BE0004737A8 /* liblwip_ios.a in Resources */ = {isa = PBXBuildFile; fileRef = DDC823591E6A1DFB009F695F /* liblwip_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +216,7 @@
 		DD98F2971E6B6FA10042D69C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = workspace/newedge_core/libs/lwip;
 			dstSubfolderSpec = 16;
 			files = (
 			);
@@ -223,13 +224,13 @@
 		};
 		DDC823571E6A1DFB009F695F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = /workspace/newedge_core/libs/lwip;
 			dstSubfolderSpec = 0;
 			files = (
 				DD3732621E77A10F00C63D54 /* liblwip_ios.a in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -1052,6 +1053,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5CF4821ED69BE0004737A8 /* liblwip_ios.a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
