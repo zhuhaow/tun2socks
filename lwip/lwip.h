@@ -1,18 +1,21 @@
 #ifndef lwip_h
 #define lwip_h
 
-#import <Foundation/Foundation.h>
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
+#ifdef __cplusplus
+extern "C" {
 #endif
 
+// - debug.h
+
+#define LWIP_ASSERT(message, assertion) 
+
+// - Original lwip
+
 //! Project version number for lwip.
-FOUNDATION_EXPORT double lwipVersionNumber;
+extern double lwipVersionNumber;
 
 //! Project version string for lwip.
-FOUNDATION_EXPORT const unsigned char lwipVersionString[];
+extern const unsigned char lwipVersionString[];
 
 /* Modules initialization */
 void lwip_init(void);
@@ -197,6 +200,7 @@ struct tcp_pcb;
  */
 typedef err_t (*tcp_accept_fn)(void *arg, struct tcp_pcb *newpcb, err_t err);
 
+    
 /* the TCP protocol control block */
 struct tcp_pcb {
     /** common PCB members */
@@ -220,7 +224,6 @@ struct tcp_pcb {
  */
 typedef err_t (*tcp_recv_fn)(void *arg, struct tcp_pcb *tpcb,
                              struct pbuf *p, err_t err);
-
 /** Function prototype for tcp sent callback functions. Called when sent data has
  * been acknowledged by the remote side. Use it to free corresponding resources.
  * This also means that the pcb has now space available to send new data.
@@ -284,7 +287,7 @@ void             tcp_recv    (struct tcp_pcb *pcb, tcp_recv_fn recv);
 void             tcp_sent    (struct tcp_pcb *pcb, tcp_sent_fn sent);
 void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
 void             tcp_err     (struct tcp_pcb *pcb, tcp_err_fn err);
-
+u32_t            tcp_unsent  (struct tcp_pcb *pcb);
 #define          tcp_mss(pcb)             (((pcb)->flags & TF_TIMESTAMP) ? ((pcb)->mss - 12)  : (pcb)->mss)
 #define          tcp_sndbuf(pcb)          ((pcb)->snd_buf)
 #define          tcp_sndqueuelen(pcb)     ((pcb)->snd_queuelen)
@@ -476,5 +479,108 @@ struct netif {
 #endif /* ENABLE_LOOPBACK */
 };
 
+// - udp.h
+
+
+/** Function prototype for udp pcb receive callback functions
+ * addr and port are in same byte order as in the pcb
+ * The callback is responsible for freeing the pbuf
+ * if it's not used any more.
+ *
+ * ATTENTION: Be aware that 'addr' points into the pbuf 'p' so freeing this pbuf
+ *            makes 'addr' invalid, too.
+ *
+ * @param arg user supplied argument (udp_pcb.recv_arg)
+ * @param pcb the udp_pcb which received data
+ * @param p the packet buffer that was received
+ * @param addr the remote IP address from which the packet was received
+ * @param port the remote port from which the packet was received
+ */
+typedef void (*udp_recv_fn)(void *arg, struct udp_pcb *pcb, struct pbuf *p,
+    ip_addr_t *addr, u16_t port);
+
+
+/* The following functions is the application layer interface to the
+   UDP code. */
+struct udp_pcb * udp_new        (void);
+void             udp_remove     (struct udp_pcb *pcb);
+err_t            udp_bind       (struct udp_pcb *pcb, ip_addr_t *ipaddr,
+                                 u16_t port);
+err_t            udp_connect    (struct udp_pcb *pcb, ip_addr_t *ipaddr,
+                                 u16_t port);
+void             udp_disconnect (struct udp_pcb *pcb);
+void             udp_recv       (struct udp_pcb *pcb, udp_recv_fn recv,
+                                 void *recv_arg);
+err_t            udp_sendto_if  (struct udp_pcb *pcb, struct pbuf *p,
+                                 ip_addr_t *dst_ip, u16_t dst_port,
+                                 struct netif *netif);
+err_t            udp_sendto     (struct udp_pcb *pcb, struct pbuf *p,
+                                 ip_addr_t *dst_ip, u16_t dst_port);
+err_t            udp_send       (struct udp_pcb *pcb, struct pbuf *p);
+void             udp_accept     (udp_recv_fn recv, void *recv_arg);
+ 
+#if LWIP_CHECKSUM_ON_COPY
+err_t            udp_sendto_if_chksum(struct udp_pcb *pcb, struct pbuf *p,
+                                 ip_addr_t *dst_ip, u16_t dst_port,
+                                 struct netif *netif, u8_t have_chksum,
+                                 u16_t chksum);
+err_t            udp_sendto_chksum(struct udp_pcb *pcb, struct pbuf *p,
+                                 ip_addr_t *dst_ip, u16_t dst_port,
+                                 u8_t have_chksum, u16_t chksum);
+err_t            udp_send_chksum(struct udp_pcb *pcb, struct pbuf *p,
+                                 u8_t have_chksum, u16_t chksum);
+#endif /* LWIP_CHECKSUM_ON_COPY */
+
+#define          udp_flags(pcb) ((pcb)->flags)
+#define          udp_setflags(pcb, f)  ((pcb)->flags = (f))
+
+/* The following functions are the lower layer interface to UDP. */
+void             udp_input      (struct pbuf *p, struct netif *inp);
+
+void             udp_init       (void);
+
+    
+    struct udp_pcb {
+        /* Common members of all PCB types */
+        IP_PCB;
+        
+        /* Protocol specific PCB members */
+        
+        struct udp_pcb *next;
+        
+        u8_t flags;
+        /** ports are in host byte order */
+        u16_t local_port, remote_port;
+        
+#if LWIP_IGMP
+        /** outgoing network interface for multicast packets */
+        ip_addr_t multicast_ip;
+#endif /* LWIP_IGMP */
+        
+#if LWIP_UDPLITE
+        /** used for UDP_LITE only */
+        u16_t chksum_len_rx, chksum_len_tx;
+#endif /* LWIP_UDPLITE */
+        
+        /** receive callback function */
+        udp_recv_fn recv;
+        /** user-supplied argument for the recv callback */
+        void *recv_arg;
+    };
+    
+    
+// - ip.h
+
+err_t ip_input(struct pbuf *p, struct netif *inp);
+
+// - netif.h
+
+struct netif *netif_add(struct netif *netif, ip_addr_t *ipaddr, ip_addr_t *netmask,
+      ip_addr_t *gw, void *state, netif_init_fn init, netif_input_fn input);
+void netif_set_up(struct netif *netif);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* lwip_h */

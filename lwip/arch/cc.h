@@ -77,6 +77,7 @@ typedef unsigned long mem_ptr_t;
 /* prototypes for printf() and abort() */
 #include <stdio.h>
 #include <stdlib.h>
+
 /* Plaform specific diagnostic output */
 #define LWIP_PLATFORM_DIAG(x)	do {printf x;} while(0)
 

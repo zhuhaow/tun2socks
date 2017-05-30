@@ -219,7 +219,7 @@ public final class TSTCPSocket {
         assert(tcp_close(pcb)==err_t(ERR_OK))
         
         release()
-        // the lwip will handle the following things for us
+        // the lwip will handle the rest things for us
         delegate?.socketDidClose(self)
     }
     

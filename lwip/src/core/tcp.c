@@ -1739,4 +1739,11 @@ tcp_pcbs_sane(void)
 }
 #endif /* TCP_DEBUG */
 
+u32_t            tcp_unsent  (struct tcp_pcb *pcb) {
+    if (pcb->unsent) {
+        return pcb->unsent->len;
+    }
+    return 0;
+}
+
 #endif /* LWIP_TCP */

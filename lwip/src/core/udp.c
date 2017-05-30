@@ -72,6 +72,8 @@
 #define UDP_ENSURE_LOCAL_PORT_RANGE(port) (((port) & ~UDP_LOCAL_PORT_RANGE_START) + UDP_LOCAL_PORT_RANGE_START)
 #endif
 
+
+static udp_recv_fn s_udb_new_callback;
 /* last local UDP port */
 static u16_t udp_port = UDP_LOCAL_PORT_RANGE_START;
 
@@ -287,6 +289,19 @@ udp_input(struct pbuf *p, struct netif *inp)
     }
   }
 
+      if(pcb == NULL) {
+          pcb = udp_new();
+          pcb->local_ip = *ip_current_dest_addr();
+          pcb->local_port = dest;
+          pcb->remote_ip = *ip_current_src_addr();
+          pcb->remote_port = src;
+          pcb->recv = s_udb_new_callback;
+          pcb->recv_arg = NULL;
+          pcb->next = udp_pcbs;
+          udp_pcbs = pcb;
+          pcb->flags |= UDP_FLAGS_CONNECTED;
+          
+      }
   /* Check checksum if this is a match or if it was directed at us. */
   if (pcb != NULL || ip_addr_cmp(&inp->ip_addr, &current_iphdr_dest)) {
     LWIP_DEBUGF(UDP_DEBUG | LWIP_DBG_TRACE, ("udp_input: calculating checksum\n"));
@@ -511,6 +526,9 @@ udp_sendto_chksum(struct udp_pcb *pcb, struct pbuf *p, ip_addr_t *dst_ip,
 #else
   netif = ip_route(dst_ip);
 #endif /* LWIP_IGMP */
+    if (netif == NULL) {
+        netif = netif_list;
+    }
 
   /* no outgoing network interface could be found? */
   if (netif == NULL) {
@@ -621,8 +639,9 @@ udp_sendto_if_chksum(struct udp_pcb *pcb, struct pbuf *p, ip_addr_t *dst_ip,
     q->flags |= PBUF_FLAG_MCASTLOOP;
   }
 #endif /* LWIP_IGMP */
-
-
+//Use local pcb ip as output ip
+  src_ip = &(pcb->local_ip);
+#if 0
   /* PCB local address is IP_ANY_ADDR? */
   if (ip_addr_isany(&pcb->local_ip)) {
     /* use outgoing network interface IP address as source address */
@@ -643,7 +662,7 @@ udp_sendto_if_chksum(struct udp_pcb *pcb, struct pbuf *p, ip_addr_t *dst_ip,
     /* use UDP PCB local IP address as source address */
     src_ip = &(pcb->local_ip);
   }
-
+#endif
   LWIP_DEBUGF(UDP_DEBUG, ("udp_send: sending datagram of length %"U16_F"\n", q->tot_len));
 
 #if LWIP_UDPLITE
@@ -934,6 +953,14 @@ udp_recv(struct udp_pcb *pcb, udp_recv_fn recv, void *recv_arg)
   pcb->recv_arg = recv_arg;
 }
 
+    void
+    udp_accept(udp_recv_fn recv, void *recv_arg)
+    {
+        /* remember recv() callback and user data */
+        s_udb_new_callback = recv;
+    }
+    
+    
 /**
  * Remove an UDP PCB.
  *
