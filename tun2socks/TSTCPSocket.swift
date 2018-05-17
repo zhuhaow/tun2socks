@@ -330,8 +330,8 @@ public final class TSTCPSocket {
         pendingBufferQueue.removeAll()
         pendingDataQueue.removeAll()
         sentCursor = 0
-        identityArg.deinitialize()
-        identityArg.deallocate(capacity: 1)
+        identityArg.deinitialize(count: 1)
+        identityArg.deallocate()
         SocketDict.socketDict.removeValue(forKey: identity)
     }
     

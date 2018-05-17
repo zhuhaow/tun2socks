@@ -94,7 +94,7 @@ public final class TSIPStack {
         timer = DispatchSource.makeTimerSource(queue: processQueue)
         // note the default tcp_tmr interval is 250 ms.
         // I don't know the best way to set leeway.
-        timer!.scheduleRepeating(deadline: DispatchTime.distantFuture , interval: DispatchTimeInterval.microseconds(250), leeway: DispatchTimeInterval.microseconds(250))
+        timer!.schedule(deadline: DispatchTime.distantFuture , repeating: DispatchTimeInterval.microseconds(250), leeway: DispatchTimeInterval.microseconds(250))
         timer!.setEventHandler {
             [weak self] in
             self?.checkTimeout()
