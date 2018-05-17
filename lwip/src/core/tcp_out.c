@@ -708,6 +708,10 @@ memerr:
   return ERR_MEM;
 }
 
+u16_t tcp_available_bytes(struct tcp_pcb *pcb) {
+    return tcp_sndbuf(pcb);
+}
+
 /**
  * Enqueue TCP options for transmission.
  *
