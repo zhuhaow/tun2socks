@@ -3,8 +3,8 @@ osx_image: xcode10.2
 install:
 - bundle install
 script:
-- bundle exec fastlane scan --scheme tun2socks-macOS
-- bundle exec fastlane scan --scheme tun2socks-iOS
+- bundle exec fastlane gym --scheme tun2socks-macOS --skip_archive 
+- bundle exec fastlane gym --scheme tun2socks-iOS --skip_archive --skip_package_ipa
 after_success:
 - "./docs/build_docs.sh"
 before_deploy:
