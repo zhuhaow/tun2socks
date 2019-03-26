@@ -94,7 +94,7 @@ public final class TSIPStack {
         timer = DispatchSource.makeTimerSource(queue: processQueue)
         // note the default tcp_tmr interval is 250 ms.
         // I don't know the best way to set leeway.
-        timer!.scheduleRepeating(deadline: DispatchTime.distantFuture , interval: DispatchTimeInterval.microseconds(250), leeway: DispatchTimeInterval.microseconds(250))
+        timer!.schedule(deadline: DispatchTime.distantFuture , repeating: DispatchTimeInterval.microseconds(250), leeway: DispatchTimeInterval.microseconds(250))
         timer!.setEventHandler {
             [weak self] in
             self?.checkTimeout()
@@ -120,8 +120,8 @@ public final class TSIPStack {
     
     func writeOut(pbuf: UnsafeMutablePointer<pbuf>) {
         var data = Data(count: Int(pbuf.pointee.tot_len))
-        _ = data.withUnsafeMutableBytes {
-            pbuf_copy_partial(pbuf, $0, pbuf.pointee.tot_len, 0)
+        _ = data.withUnsafeMutableBytes { p in
+            pbuf_copy_partial(pbuf, p.baseAddress, pbuf.pointee.tot_len, 0)
         }
         // Only support IPv4 as of now.
         outputBlock([data], [NSNumber(value: AF_INET)])

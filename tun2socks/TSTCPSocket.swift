@@ -244,8 +244,8 @@ public final class TSTCPSocket {
     
     func release() {
         pcb = nil
-        identityArg.deinitialize()
-        identityArg.deallocate(capacity: 1)
+        identityArg.deinitialize(count: 1)
+        identityArg.deallocate()
         SocketDict.socketDict.removeValue(forKey: identity)
     }
     
