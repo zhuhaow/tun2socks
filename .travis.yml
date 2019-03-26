@@ -1,12 +1,10 @@
 language: objective-c
 osx_image: xcode10.2
-rvm:
-- 2.3.1
 install:
-- gem install xcpretty
+- bundle install
 script:
-- xcodebuild -project tun2socks.xcodeproj -scheme "tun2socks-macOS" | xcpretty
-- xcodebuild -project tun2socks.xcodeproj -scheme "tun2socks-iOS" | xcpretty
+- bundle exec fastlane scan --scheme tun2socks-macOS
+- bundle exec fastlane scan --scheme tun2socks-iOS
 after_success:
 - "./docs/build_docs.sh"
 before_deploy:
