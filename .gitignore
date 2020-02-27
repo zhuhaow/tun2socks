@@ -133,3 +133,16 @@ Temporary Items
 .apdisk
 
 text_graph
+
+# Created by https://www.gitignore.io/api/swiftpackagemanager
+# Edit at https://www.gitignore.io/?templates=swiftpackagemanager
+
+### SwiftPackageManager ###
+Packages
+.build/
+xcuserdata
+DerivedData/
+*.xcodeproj
+
+
+# End of https://www.gitignore.io/api/swiftpackagemanager
