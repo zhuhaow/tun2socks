@@ -30,13 +30,7 @@ The overall structure of tun2socks:
 
 Fully documented API reference can be found [here](https://zhuhaow.github.io/tun2socks/).
 
-[Carthage](https://github.com/Carthage/Carthage) is recommended to integrate tun2socks by adding
-
-```
-github "zhuhaow/tun2socks"
-```
-
-to the `Cartfile`.
+It is recommended to use swift package manager to integrate tun2socks.
 
 Another alternative may be [NEKit](https://github.com/zhuhaow/NEKit) which uses tun2socks and provides many features to build a proxy app.
 
