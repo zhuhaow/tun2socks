@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>tun2socks  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="tun2socks  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          tun2socks Docs
+        </a>
+         (96% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/zhuhaow/tun2socks">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">tun2socks Reference</a>
+      <img class="carat" src="img/carat.png" />
+      tun2socks  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/TSIPStack.html">TSIPStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/TSTCPSocket.html">TSTCPSocket</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/TSIPStackDelegate.html">TSIPStackDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/TSTCPSocketDelegate.html">TSTCPSocketDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='tun2socks' class='heading'>tun2socks</h1>
+
+<p><a href="https://travis-ci.org/zhuhaow/tun2socks"><img src="https://travis-ci.org/zhuhaow/tun2socks.svg?branch=master" alt="Build Status"></a> <a href="https://github.com/zhuhaow/tun2socks/releases"><img src="https://img.shields.io/github/release/zhuhaow/tun2socks.svg?maxAge=2592000" alt="GitHub release"></a> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="https://raw.githubusercontent.com/zhuhaow/NEKit/master/LICENSE.md"><img src="https://img.shields.io/badge/license-BSD_3--Clause-blue.svg" alt="GitHub license"></a></p>
+
+<p>tun2socks is designed to work with the NetworkExtension framework. It is based on the latest stable lwip with minimal modification.</p>
+<h2 id='feature' class='heading'>Feature</h2>
+
+<p>The whole stack is based on GCD which is efficient and fast.</p>
+
+<p>Only TCP protocol is supported.</p>
+
+<p>All other protocols (UDP, ICMP, IGMP, &hellip;) will not be supported since they are stateless or can not be supported in NetworkExtension.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>The overall structure of tun2socks:</p>
+<pre class="highlight plaintext"><code>╔═══════════════════════╗                                                       
+║sourceAddress: X.X.X.X ║                                                       
+║    sourcePort: XX     ║                    writeData(_:)                      
+╚═══════════════════════╝                          │                            
+                                                   │            ┌──────────────┐
+┌─────────────┐  ┌───────┐  ┌────────────┐  ┌──────▼──────┐     │TSTCPSocketDel│
+│    Local    ◀──▶  TUN  ◀──▶ TSIPStack  ◀──▶ TSTCPSocket ├─────▶egate.didReadD│
+└─────────────┘  └───────┘  └────────────┘  └─────────────┘     │    ata()     │
+                                                                └──────────────┘
+</code></pre>
+
+<p>Fully documented API reference can be found <a href="https://zhuhaow.github.io/tun2socks/">here</a>.</p>
+
+<p>It is recommended to use swift package manager to integrate tun2socks.</p>
+
+<p>Another alternative may be <a href="https://github.com/zhuhaow/NEKit">NEKit</a> which uses tun2socks and provides many features to build a proxy app.</p>
+<h2 id='ipv6-support' class='heading'>IPv6 support</h2>
+
+<p>As of now, IPv6 is not supported since lwip 1.4 does not support dual stack.
+IPv6 will be supported in the next major version of lwip.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external">Zhuhao Wang</a>. All rights reserved. (Last updated: 2020-02-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

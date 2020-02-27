@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/runners/2.165.2/work/tun2socks/tun2socks/Sources/tun2socks/TSIPStack.swift",
+      "line": 38,
+      "symbol": "TSIPStack.processQueue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/runners/2.165.2/work/tun2socks/tun2socks"
+}
